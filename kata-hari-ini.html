@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arti Kata</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleword.css">
+    <link rel="stylesheet" href="css/modul.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <img src="images/Introduction (2).png" alt="Logo Kataloka">
+            </div>
+            <h1>Kataloka</h1>
+            <ul class="nav-list">
+                <li class="nav-list-item"><a class="nav-link" href="/index.html">Beranda</a></li>
+                <li class="nav-list-item dropdown">
+                    <a class="nav-link dropbtn" href="#">Pilihan</a>
+                    <ul class="dropdown-content">
+                        <li><a href="/katapedia.html">Katapedia</a></li>
+                        <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
+                        <li><a href="/uji-kemampuan.html">Cerdas Bersama</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item auth"><a class="nav-link" href="/login.html">Masuk</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="meaning-container"></div>
+
+    <script>
+        const wordsWithMeanings = {
+            "Inovasi": "Pembaharuan atau ide baru yang diterapkan untuk meningkatkan sesuatu.",
+            "Kolaborasi": "Kerja sama antara dua pihak atau lebih untuk mencapai tujuan bersama.",
+            "Melankolis": "Cenderung murung atau sedih, sering terkait dengan perasaan yang mendalam.",
+            "Inklusif": "Melibatkan atau mencakup semua orang tanpa terkecuali.",
+            "Altruisme": "Kepedulian terhadap kesejahteraan orang lain di atas kepentingan diri sendiri.",
+            "Ambivalen": "Perasaan campur aduk atau sikap yang tidak pasti terhadap sesuatu.",
+            "Sinergi": "Hasil kerja sama yang lebih besar daripada jumlah kontribusi individu.",
+            "Paradigma": "Kerangka berpikir atau cara pandang yang digunakan untuk memahami sesuatu.",
+            "Resiliensi": "Kemampuan untuk pulih dari kesulitan atau bertahan dalam situasi yang sulit.",
+            "Kontemplasi": "Pemikiran yang mendalam dan serius tentang sesuatu.",
+            "Katalis": "Pemicu perubahan atau peningkatan, sering tanpa terlibat langsung.",
+            "Empati": "Kemampuan untuk memahami perasaan dan situasi orang lain."
+        };
+
+     
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+      
+        const word = getQueryParam('word');
+
+      
+        const meaningContainer = document.getElementById('meaning-container');
+        if (word && wordsWithMeanings[word]) {
+            meaningContainer.innerHTML = `<h2>${word}</h2><p>${wordsWithMeanings[word]}</p>`;
+        } else {
+            meaningContainer.innerHTML = "<p>Kata tidak ditemukan.</p>";
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+    </footer>
+</body>
+
+</html>

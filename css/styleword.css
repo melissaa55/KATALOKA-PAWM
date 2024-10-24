@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+header {
+    margin-bottom: 20px; 
+}
+
+
+header p {
+    font-size: 16px;
+    color: #555; 
+}
+
+
+.interactive-box {
+    color: var(--red);
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.words-container {
+    align-items: center;
+    justify-content: center;
+    margin: 20px 350px;
+    padding: 20px 50px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    background-color: rgba(125, 177, 154, 0.145);
+}
+
+.word-box {
+    width: 180px;
+    margin: 30px;
+    padding: 10px 20px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #0b352d;
+    border-radius: 10px;
+    background-color: var(--green);
+    color: var(--beige);
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.word-box:hover {
+    transform: scale(1.05); 
+}
+
+@media (max-width: 768px) {
+    .words-container {
+        grid-template-columns: repeat(2, 1fr); 
+        align-items: center;
+        justify-content: center;
+        display: grid ;
+        background-color: #fffbed;
+    }
+
+    .interactive-box {
+        padding: 0 20px;
+        margin: 0 340px;
+        display: flex;
+        font-size: 2rem; 
+    }
+
+    .word-box {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .interactive-box {
+        font-size: 1.2rem; 
+    }
+}

@@ -1,0 +1,15 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.title-header {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
+
+.form-title {
+    color: var(--green);
+}
