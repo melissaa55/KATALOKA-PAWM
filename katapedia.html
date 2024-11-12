@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percakapan Interaktif</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleword.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <img src="images/Introduction (2).png" alt="Logo Kataloka">
+            </div>
+            <h1>Kataloka</h1>
+            <ul class="nav-list">
+                <li class="nav-list-item"><a class="nav-link" href="/">Beranda</a></li>
+                <li class="nav-list-item dropdown">
+                    <a class="nav-link dropbtn" href="#">Pilihan</a>
+                    <ul class="dropdown-content">
+                        <li><a href="/katapedia.html">Katapedia</a></li>
+                        <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
+                        <li><a href="/uji-kemampuan.html">Cerdas Bersama</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item auth"><a class="nav-link" href="/login.html">Masuk</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Container for the list of cards -->
+    <div class="words-container" id="words-container"></div>
+
+    <script>
+        const wordsWithMeanings = [
+            { 
+                word: "Inovasi", 
+                partOfSpeech: "noun", 
+                pronunciation: "in-OH-va-see", 
+                meaning: "Pembaharuan atau ide baru yang diterapkan untuk meningkatkan sesuatu.",
+                didYouKnow: "Inovasi berasal dari bahasa Latin 'innovatus', yang berarti memperbarui. Inovasi berperan penting dalam perkembangan teknologi dan budaya, mendorong masyarakat untuk menemukan solusi baru." 
+            },
+            { 
+                word: "Kolaborasi", 
+                partOfSpeech: "noun", 
+                pronunciation: "ko-la-BO-ra-see", 
+                meaning: "Kerja sama antara dua pihak atau lebih untuk mencapai tujuan bersama.",
+                didYouKnow: "Kolaborasi telah menjadi inti dari banyak kemajuan dalam sejarah manusia. Dari proyek ilmiah hingga seni dan budaya, bekerja sama memungkinkan manusia mencapai lebih dari yang bisa dilakukan sendirian." 
+            },
+            { 
+                word: "Melankolis", 
+                partOfSpeech: "adjective", 
+                pronunciation: "me-LAN-ko-lis", 
+                meaning: "Suasana hati yang cenderung sedih atau murung.",
+                didYouKnow: "Melankolis adalah salah satu dari empat temperamen klasik dalam teori medis kuno, bersama dengan sanguinis, koleris, dan plegmatis. Dikatakan bahwa orang dengan temperamen melankolis memiliki jiwa introspektif."
+            },
+            // Add more words as needed
+        ];
+
+        function displayCards() {
+            const container = document.getElementById('words-container');
+            container.innerHTML = ''; // Clear container
+
+            wordsWithMeanings.forEach((item) => {
+                const card = document.createElement('div'); 
+                card.classList.add('word-card'); 
+                
+                // Front side with question mark
+                const front = document.createElement('div');
+                front.classList.add('card-front');
+                front.innerHTML = '<span class="question-mark">?</span>';
+                
+                card.appendChild(front);
+                container.appendChild(card);
+
+                // Navigate to word-detail.html on click with word details as query params
+                card.addEventListener('click', () => {
+                    const params = new URLSearchParams({
+                        word: item.word,
+                        partOfSpeech: item.partOfSpeech,
+                        pronunciation: item.pronunciation,
+                        meaning: item.meaning,
+                        didYouKnow: item.didYouKnow
+                    });
+                    window.location.href = `word-detail.html?${params.toString()}`;
+                });
+            });
+        }
+
+        // Load cards on page load
+        window.onload = displayCards;
+    </script>
+</body>
+</html>
+

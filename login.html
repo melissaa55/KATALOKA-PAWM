@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kataloka - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <img src="images/Introduction (2).png" alt="Logo Kataloka">
+            </div>
+            <h1>Kataloka</h1>
+            <ul class="nav-list">
+                <li class="nav-list-item"><a class="nav-link" href="/">Beranda</a></li>
+                <li class="nav-list-item"><a class="nav-link" href="#features">Pilihan</a></li>
+                <li class="nav-list-item auth"><a class="nav-link" href="/register.html">Daftar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="login-container">
+        <main class="login-page">
+            <img src="images\Introduction.png" alt="Login Image" class="login-image">
+            <div class="login-container">
+                <div class="form-container">
+                    <form class="login-form" onsubmit="return handleLogin(event)">
+                        <h1 class="form-title">Login</h1>
+                        <div class="form-field">
+                            <label class="form-label">Email</label>
+                            <input class="form-input" type="email" id="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label">Password</label>
+                            <input class="form-input" type="password" id="password" required>
+                        </div>
+                        <button class="form-button" type="submit">Sign In</button>
+                        <a class="form-footer-link" href="/register.html">Don't have an account? Sign up</a>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </main>
+
+        <!-- Firebase App (the core Firebase SDK) -->
+
+    <script>
+        // Your Firebase configuration object
+        const firebaseConfig = {
+            apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
+            authDomain: "kataloka-995bd.firebaseapp.com",
+            projectId: "kataloka-995bd",
+            storageBucket: "kataloka-995bd.firebasestorage.app",
+            messagingSenderId: "989935904462",
+            appId: "1:989935904462:web:1f7d64db97686afd7cd29f",
+            measurementId: "G-0X8CY7D8EM"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+
+
+
+        <footer>
+            <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+        </footer>
+
+        <script src="login.js"></script>
+</body>
+
+</html>

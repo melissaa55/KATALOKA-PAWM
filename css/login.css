@@ -1,0 +1,20 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.login-image {
+    width: 450px; /* Sesuaikan ukuran sesuai kebutuhan */
+    height: auto;
+    margin-right: 120px; /* Memberi jarak antara gambar dan form */
+}
+
+

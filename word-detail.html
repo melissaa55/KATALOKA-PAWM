@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Detail</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleword.css">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <img src="images/Introduction (2).png" alt="Logo Kataloka">
+            </div>
+            <h1>Kataloka</h1>
+            <ul class="nav-list">
+                <li class="nav-list-item"><a class="nav-link" href="/">Beranda</a></li>
+                <li class="nav-list-item dropdown">
+                    <a class="nav-link dropbtn" href="#">Pilihan</a>
+                    <ul class="dropdown-content">
+                        <li><a href="/katapedia.html">Katapedia</a></li>
+                        <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
+                        <li><a href="/uji-kemampuan.html">Cerdas Bersama</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item auth"><a class="nav-link" href="/login.html">Masuk</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Container for displaying the selected word's meaning in detail -->
+    <div id="meaning-container" class="meaning-box">
+        <h1 id="word-title">Kataloka</h1>
+        <p class="word-details">
+            <span id="word-partOfSpeech" class="part-of-speech"></span> | 
+            <span id="word-pronunciation" class="pronunciation"></span>
+        </p>
+        <hr>
+        <h3 class="meaning-title">What It Means</h3>
+        <p id="word-definition" class="word-definition"></p>
+        <hr>
+        <h3 class="did-you-know-title">Did You Know?</h3>
+        <p id="did-you-know" class="did-you-know"></p>
+    </div>
+    
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function displayWordDetails() {
+            const word = getQueryParam('word');
+            const partOfSpeech = getQueryParam('partOfSpeech');
+            const pronunciation = getQueryParam('pronunciation');
+            const meaning = getQueryParam('meaning');
+            const didYouKnow = getQueryParam('didYouKnow');
+
+            document.getElementById('word-title').textContent = word;
+            document.getElementById('word-partOfSpeech').textContent = partOfSpeech;
+            document.getElementById('word-pronunciation').textContent = pronunciation;
+            document.getElementById('word-definition').textContent = meaning;
+            document.getElementById('did-you-know').textContent = didYouKnow;
+        }
+
+        // Display word details on page load
+        window.onload = displayWordDetails;
+    </script>
+</body>
+</html>

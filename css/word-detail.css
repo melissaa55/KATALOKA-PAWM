@@ -1,0 +1,69 @@
+/* word-detail.css */
+
+/* Style for the meaning box */
+.meaning-box {
+    background-color: #0a3c21;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px auto;
+    width: 100px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style for the word title within the box */
+#word-title {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Style for part of speech and pronunciation */
+.part-of-speech {
+    font-style: italic;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.pronunciation {
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: -10px;
+}
+
+/* Style for the "What It Means" heading */
+.meaning-title {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Style for the word definition */
+.word-definition {
+    font-size: 1rem;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Style for the "Did You Know?" heading */
+.did-you-know-title {
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Style for the Did You Know content */
+.did-you-know {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Centering header and adding space */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}

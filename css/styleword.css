@@ -1,0 +1,218 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 20px; 
+}
+
+header p {
+    font-size: 16px;
+    color: #555; 
+}
+
+.interactive-box {
+    color: var(--red);
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.words-container {
+    align-items: center;
+    justify-content: center;
+    margin: 60px auto;
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    background-color: rgba(125, 177, 154, 0.145);
+    max-width: 800px;
+}
+
+.word-box {
+    width: 180px;
+    margin: 15px;
+    padding: 10px 20px;
+    text-align: center;
+    border: 1px solid #0b352d;
+    border-radius: 10px;
+    background-color: var(--green);
+    color: var(--beige);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.word-box:hover {
+    transform: scale(1.05); 
+}
+
+/* Meaning container styling to match "Word of the Day" style */
+#meaning-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f6ef;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+#word-title {
+    font-size: 5em;
+    color: #333;
+    font-weight: 600;  /* Use a bold font weight similar to the example */
+    margin: 0;
+    line-height: 1.2;
+}
+
+.word-details {
+    font-size: 1.5em;
+    color: #666;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.part-of-speech {
+    font-style: italic;
+    color: #5a6b74;
+}
+
+.pronunciation {
+    color: #666;
+}
+
+#meaning-container hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.meaning-title {
+    font-size: 1.5em;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.word-definition {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Container for the cards */
+.words-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+/* Style for each card */
+.word-card {
+    width: 200px;
+    height: 200px;
+    background-color: #f7f4ee;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.word-card:hover {
+    transform: scale(1.05);
+}
+
+/* Style for the front with question mark */
+.card-front {
+    font-size: 3rem;
+    color: #115246;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style for the back with word details */
+.card-back {
+    font-size: 1rem;
+    color: #333;
+    padding: 15px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f7f4ee;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hide elements initially */
+.hidden {
+    display: none;
+}
+
+/* Style for the question mark */
+.question-mark {
+    font-size: 3rem;
+    color: #115246;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .words-container {
+        grid-template-columns: repeat(2, 1fr); 
+        align-items: center;
+        justify-content: center;
+        display: grid;
+        background-color: #fffbed;
+        padding: 20px;
+    }
+
+    .interactive-box {
+        padding: 0 20px;
+        margin: 0 auto;
+        display: flex;
+        font-size: 2rem; 
+    }
+
+    .word-box {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .interactive-box {
+        font-size: 1.2rem; 
+    }
+    
+    #word-title {
+        font-size: 2.5em;
+    }
+
+    .word-details {
+        font-size: 1em;
+    }
+
+    .word-definition {
+        font-size: 1em;
+    }
+}
