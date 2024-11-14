@@ -1,0 +1,87 @@
+.profile-container {
+    display: flex;
+    margin: 50px auto;
+    width: 800px;
+    height: 450px;
+    background: linear-gradient(135deg, #FAF1E6, #E4EFE7, #E8ECD6, #FFFBEB); /* Gradien dari hijau muda ke hijau tua */
+    box-shadow: 0 1px 10px 1px #52706b98;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-left {
+    flex: 0 0 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.profile-pic {
+    width: 350px;
+    height: auto;
+}
+
+.profile-right {
+    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.form-label {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #543b2f;
+    font-weight: bold;
+}
+
+.form-input {
+    width: 120%;
+    height: 45px;
+    padding: 0 10px;
+    border-color: var(--green);
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-button {
+    width: 120%;
+    height: 45px;
+    margin-top: 30px;
+    background-color: var(--green);
+    border-radius: 5px;
+    color: var(--beige);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-button:hover {
+    background-color: #115246c9;
+}
+
+.logout-button {
+    width: 120%;
+    background-color: #cd1f1f;
+    margin-top: 20px;
+    
+}
+
+.logout-button:hover {
+    background-color: #cd1f1fba;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; /* Memisahkan tombol ke kanan dan kiri */
+    gap: 10px; /* Menambahkan jarak antara tombol */
+    margin-top: 10px;
+}
+
+.extra-image {
+    position: absolute;
+    bottom: 30px;
+    width: 350px; /* Sesuaikan ukuran gambar */
+    height: auto;
+}

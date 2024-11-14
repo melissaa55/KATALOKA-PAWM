@@ -6,47 +6,30 @@
     <title>Kuis Bahasa Indonesia</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/cerdasbersama.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-left">
-                <img src="images/Introduction (2).png" alt="Logo Kataloka">
-            </div>
-            <h1>Kataloka</h1>
-            <ul class="nav-list">
-                <li class="nav-list-item"><a class="nav-link" href="index.html">Beranda</a></li>
-                <li class="nav-list-item dropdown">
-                    <a class="nav-link dropbtn" href="#">Pilihan</a>
-                    <ul class="dropdown-content">
-                        <li><a href="/katapedia.html">Katapedia</a></li>
-                        <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
-                        <li><a href="/cerdas-bersama.html">Cerdas Bersama</a></li>
-                    </ul>
-                </li>
-                <li class="nav-list-item auth"><a class="nav-link" href="/login.html">Masuk</a></li>
-            </ul>
-        </nav>
     </header>
+    <div id="progress-wrapper">
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <div id="progress-percentage">0%</div> <!-- Percentage display beside the progress bar -->
+    </div>
     <div id="quiz-container">
         <div id="sidebar">
             <div id="numbers-container"></div> 
-        </div>
+        </div>       
         <div id="quiz-content">
             <div id="question-box">
                 <div id="question-container"></div> 
             </div>
             <div class="answers-box"></div> 
+            <div id="navigation-buttons">
+                <button id="prev-button" onclick="prevQuestion()">Sebelumnya</button>
+                <button id="next-button" onclick="nextQuestion()">Selanjutnya</button>
+            </div>
             <div id="feedback"></div> 
-    </div>
-    <div id="navigation-buttons">
-        <button id="prev-button" onclick="prevQuestion()"><-</button>
-        <button id="next-button" onclick="nextQuestion()">-></button>
-        
-    </div>
-    <div id="back-button-container">
-        <button id="back-button">Back</button>
     </div>
     <footer>
         <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>

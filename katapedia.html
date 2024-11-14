@@ -7,6 +7,9 @@
     <title>Percakapan Interaktif</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleword.css">
+    <link rel="stylesheet" href="css/card.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 </head>
 
@@ -18,44 +21,67 @@
             </div>
             <h1>Kataloka</h1>
             <ul class="nav-list">
-                <li class="nav-list-item"><a class="nav-link" href="/">Beranda</a></li>
+                <li class="nav-list-item"><a class="nav-link" href="/home.html">Beranda</a></li>
                 <li class="nav-list-item dropdown">
                     <a class="nav-link dropbtn" href="#">Pilihan</a>
                     <ul class="dropdown-content">
-                        <li><a href="/katapedia.html">Katapedia</a></li>
                         <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
                         <li><a href="/uji-kemampuan.html">Cerdas Bersama</a></li>
                     </ul>
                 </li>
-                <li class="nav-list-item auth"><a class="nav-link" href="/login.html">Masuk</a></li>
+                <li class="nav-list-item auth"><a class="nav-link" href="/profile.html">  Profil</a></li>
             </ul>
         </nav>
     </header>
+    <div class="card-title">
+        <h2>Pilih Kata Hari Ini</h2>
+    </div>
     <!-- Container for the list of cards -->
     <div class="words-container" id="words-container"></div>
 
     <script>
         const wordsWithMeanings = [
             { 
-                word: "Inovasi", 
-                partOfSpeech: "noun", 
-                pronunciation: "in-OH-va-see", 
-                meaning: "Pembaharuan atau ide baru yang diterapkan untuk meningkatkan sesuatu.",
-                didYouKnow: "Inovasi berasal dari bahasa Latin 'innovatus', yang berarti memperbarui. Inovasi berperan penting dalam perkembangan teknologi dan budaya, mendorong masyarakat untuk menemukan solusi baru." 
+                word: "Ambivalen", 
+                partOfSpeech: "adjektiva", 
+                pronunciation: "am-bi-VA-len", 
+                meaning: "Perasaan atau sikap yang bertentangan terhadap sesuatu atau seseorang.",
+                didYouKnow: "Kata 'ambivalen' berasal dari bahasa Latin yang berarti 'dua kekuatan.' Ambivalensi sering menggambarkan keadaan ragu atau bimbang karena ada dua perasaan yang berbeda terhadap suatu hal."
             },
             { 
-                word: "Kolaborasi", 
-                partOfSpeech: "noun", 
-                pronunciation: "ko-la-BO-ra-see", 
-                meaning: "Kerja sama antara dua pihak atau lebih untuk mencapai tujuan bersama.",
-                didYouKnow: "Kolaborasi telah menjadi inti dari banyak kemajuan dalam sejarah manusia. Dari proyek ilmiah hingga seni dan budaya, bekerja sama memungkinkan manusia mencapai lebih dari yang bisa dilakukan sendirian." 
+                word: "Nirwana", 
+                partOfSpeech: "nomina", 
+                pronunciation: "NIR-wa-na", 
+                meaning: "Keadaan damai sempurna dan kebebasan dari keinginan atau penderitaan.",
+                didYouKnow: "Nirwana adalah konsep dari ajaran Buddha dan Hindu yang menggambarkan pencapaian spiritual tertinggi, tempat di mana seseorang terbebas dari siklus kelahiran, kematian, dan penderitaan."
             },
             { 
                 word: "Melankolis", 
-                partOfSpeech: "adjective", 
+                partOfSpeech: "adjektiva", 
                 pronunciation: "me-LAN-ko-lis", 
                 meaning: "Suasana hati yang cenderung sedih atau murung.",
                 didYouKnow: "Melankolis adalah salah satu dari empat temperamen klasik dalam teori medis kuno, bersama dengan sanguinis, koleris, dan plegmatis. Dikatakan bahwa orang dengan temperamen melankolis memiliki jiwa introspektif."
+            },
+            { 
+                word: "Katarsis", 
+                partOfSpeech: "nomina", 
+                pronunciation: "ka-TAR-sis", 
+                meaning: "Pelepasan emosi atau ketegangan melalui ekspresi tertentu, seperti seni atau meditasi.",
+                didYouKnow: "Kata 'katarsis' berasal dari bahasa Yunani dan pertama kali dipakai oleh Aristoteles untuk menggambarkan proses penyucian jiwa melalui pengalaman emosi yang mendalam, seperti dalam drama atau musik."
+            },
+            { 
+                word: "Serendipitas", 
+                partOfSpeech: "nomina", 
+                pronunciation: "se-ren-DI-pi-tas", 
+                meaning: "Kemampuan menemukan sesuatu yang menyenangkan atau berharga secara kebetulan.",
+                didYouKnow: "Kata ini diambil dari cerita rakyat tentang tiga pangeran dari Serendip (nama lama Sri Lanka) yang menemukan hal-hal luar biasa secara kebetulan. Serendipitas menggambarkan kejadian positif yang tidak disengaja."
+            },
+            { 
+                word: "Euforia", 
+                partOfSpeech: "nomina", 
+                pronunciation: "e-u-FO-ri-a", 
+                meaning: "Perasaan bahagia dan antusiasme yang luar biasa, biasanya untuk waktu yang singkat.",
+                didYouKnow: "Euforia sering kali terjadi setelah pencapaian besar atau pengalaman emosional yang kuat, namun perasaan ini biasanya bersifat sementara dan bisa menurun setelah beberapa saat."
             },
             // Add more words as needed
         ];
@@ -63,19 +89,19 @@
         function displayCards() {
             const container = document.getElementById('words-container');
             container.innerHTML = ''; // Clear container
-
+        
             wordsWithMeanings.forEach((item) => {
                 const card = document.createElement('div'); 
                 card.classList.add('word-card'); 
                 
-                // Front side with question mark
+                // Front side with image
                 const front = document.createElement('div');
                 front.classList.add('card-front');
-                front.innerHTML = '<span class="question-mark">?</span>';
-                
+                front.innerHTML = '<img src="images/Untitled design (4).png" alt="Card Image" class="card-image">'; // Menambahkan gambar
+        
                 card.appendChild(front);
                 container.appendChild(card);
-
+        
                 // Navigate to word-detail.html on click with word details as query params
                 card.addEventListener('click', () => {
                     const params = new URLSearchParams({
@@ -88,7 +114,7 @@
                     window.location.href = `word-detail.html?${params.toString()}`;
                 });
             });
-        }
+        }        
 
         // Load cards on page load
         window.onload = displayCards;

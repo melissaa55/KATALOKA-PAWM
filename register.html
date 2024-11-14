@@ -2,62 +2,14 @@
 <html lang="id">
 
 <head>
-    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kataloka</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/register.css">
+    <!-- Firebase CDN Scripts -->
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
-</head>
-
-<body>
-    <header>
-        <nav>
-            <div class="nav-left">
-                <img src="images/Introduction.png" alt="Logo Kataloka">
-            </div>
-            <h1>Kataloka</h1>
-            <ul class="nav-list">
-                <li class="nav-list-item"><a class="nav-link" href="/">Beranda</a></li>
-                <li class="nav-list-item"><a class="nav-link" href="#features">Pilihan</a></li>
-                <li class="nav-list-item auth"><a class="nav-link" href="/login.html">Masuk</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="register-container">
-        <div class="form-container">
-            <form class="login-form">
-                <h1 class="form-title">Welcome to Kataloka!</h1>
-                <h2 class="title-header">Register your account</h2>
-                <div class="form-field">
-                    <label class="form-label">Full Name</label>
-                    <input class="form-input" type="text" required>
-                </div>
-                <div class="form-field">
-                    <label class="form-label">Email</label>
-                    <input class="form-input" type="email" required>
-                </div>
-                <div class="form-field">
-                    <label class="form-label">Password</label>
-                    <input class="form-input" type="password" required>
-                </div>
-                <div class="form-field">
-                    <label class="form-label">Confirm Password</label>
-                    <input class="form-input" type="password" required>
-                </div>
-                <button class="form-button" type="submit">Sign Up</button>
-                <a class="form-footer-link" href="/login.html">Already have an account? Sign in</a>
-            </form>
-        </div>
-    </main>
-
-    <script>
-        // Your Firebase configuration object
+        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
             authDomain: "kataloka-995bd.firebaseapp.com",
@@ -69,13 +21,104 @@
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Tambahkan event listener setelah halaman dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.register-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Ambil nilai form
+                const fullName = document.querySelector('#fullName').value;
+                const email = document.querySelector('#email').value;
+                const password = document.querySelector('#password').value;
+                const confirmPassword = document.querySelector('#confirm-password').value;
+
+                if (password !== confirmPassword) {
+                    alert('Kata sandi tidak cocok');
+                    return;
+                }
+
+                try {
+                    // Buat pengguna dengan email dan kata sandi
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+
+                    // Simpan nama lengkap di Firestore
+                    await setDoc(doc(db, "users", user.uid), {
+                        fullName: fullName,
+                        email: email,
+                        createdAt: new Date()
+                    });
+
+                    alert('Pendaftaran berhasil!');
+                    window.location.href = 'login.html'; // Arahkan ke halaman login
+                } catch (error) {
+                    console.error(error);
+                    alert(error.message);
+                }
+            });
+        });
+    </script>    
+    
+    <!-- Meta dan CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kataloka - Register</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <img src="images/Introduction (2).png" alt="Logo Kataloka">
+            </div>
+            <h1>Kataloka</h1>
+            <ul class="nav-list">
+                <li class="nav-list-item auth"><a class="nav-link" href="/login.html">Masuk</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="register-page">
+        <img src="images\introduction.png" alt="Register Image" class="register-image">
+        <div class="register-container">
+            <div class="form-container">
+                <form class="register-form">
+                    <h1 class="form-title">Selamat Datang di Kataloka!</h1>
+                    <div class="form-field">
+                        <label class="form-label">Nama Lengkap</label>
+                        <input class="form-input" type="text" id="fullName" required>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Email</label>
+                        <input class="form-input" type="email" id="email" required>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Kata Sandi</label>
+                        <input class="form-input" type="password" id="password" required>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Konfirmasi Kata Sandi</label>
+                        <input class="form-input" type="password" id="confirm-password" required>
+                    </div>                
+                    <button class="form-button" type="submit">Daftar</button>
+                    <a class="form-footer-link" href="/login.html">Sudah punya akun? Masuk</a>
+                </form>
+            </div>
+        </div>
+    </main>
+    
 
     <footer>
         <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
     </footer>
-    <script src="register.js"></script>
 </body>
 
 </html>

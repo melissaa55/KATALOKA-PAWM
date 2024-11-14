@@ -1,12 +1,20 @@
-// Import Firebase Auth and Firestore functions
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+// Initialize Firebase only if it hasn't been initialized
+if (!firebase.apps.length) {
+    firebase.initializeApp({
+        apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
+        authDomain: "kataloka-995bd.firebaseapp.com",
+        projectId: "kataloka-995bd",
+        storageBucket: "kataloka-995bd.firebasestorage.app",
+        messagingSenderId: "989935904462",
+        appId: "1:989935904462:web:1f7d64db97686afd7cd29f",
+        measurementId: "G-0X8CY7D8EM"
+    });
+}
 
-// Initialize Firebase Auth and Firestore
-const auth = getAuth();
-const db = getFirestore();
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-document.querySelector('.login-form').addEventListener('submit', async (e) => {
+document.querySelector('.register-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Get form values
@@ -22,11 +30,11 @@ document.querySelector('.login-form').addEventListener('submit', async (e) => {
 
     try {
         // Create user with email and password
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
         // Save the full name in Firestore
-        await setDoc(doc(db, "users", user.uid), {
+        await db.collection("users").doc(user.uid).set({
             fullName: fullName,
             email: email,
             createdAt: new Date()

@@ -1,0 +1,29 @@
+.words-container {
+    background-color: transparent; /* Atur latar belakang menjadi transparan */
+    /* Sesuaikan padding jika ingin ada jarak antara kartu dan tepi container */
+    display: flex;
+    justify-content: center; /* Memposisikan kartu di tengah */
+    align-items: center;
+}
+.card-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: auto;
+    margin: -20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Menambahkan pointer saat hover */
+}
+
+.card-image:hover {
+    transform: translateY(-50px); /* Membuat kartu naik */
+    /* Efek bayangan untuk ilusi kedalaman */
+    z-index: 1; /* Menempatkan kartu di atas kartu lainnya saat di-hover */
+}
+
+.card-title h2{
+    font-family: "Poppins";
+    font-weight: bold;
+    font-size: 1.8rem;
+}

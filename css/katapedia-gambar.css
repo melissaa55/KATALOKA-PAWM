@@ -1,0 +1,23 @@
+.feature {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.feature-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.feature-image {
+    width: 60px; /* Sesuaikan ukuran gambar sesuai kebutuhan */
+    height: auto;
+    flex-shrink: 0;
+    position: absolute;
+    right: 610px;
+    
+}

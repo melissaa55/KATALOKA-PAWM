@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <img src="images/Introduction (2).png" alt="Logo Kataloka">
+            </div>
+            <h1>Kataloka</h1>
+            <ul class="nav-list">
+                <li class="nav-list-item"><a class="nav-link" href="home.html">Beranda</a></li>
+                <li class="nav-list-item dropdown">
+                    <a class="nav-link dropbtn" href="#">Pilihan</a>
+                    <ul class="dropdown-content">
+                        <li><a href="/katapedia.html">Katapedia</a></li>
+                        <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
+                        <li><a href="/cerdas-bersama.html">Cerdas Bersama</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item auth"><a id="login-button" class="nav-link" href="/profile.html">Profil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Gambar tambahan di luar container profil -->
+    <img src="images/profil2.png" alt="Gambar Tambahan" class="extra-image">
+
+    <main class="profile-container">
+        <div class="profile-left">
+            <img id="profile-pic" src="images/profil.png" alt="Foto Profil" class="profile-pic">
+        </div>
+        <div class="profile-right">
+            <form class="profile-form">
+                <div class="form-field">
+                    <label class="form-label" style="font-family: 'Poppins';">Nama</label>
+                    <input class="form-input" type="text" id="name" placeholder="Nama Pengguna">
+                </div>
+                <div class="form-field">
+                    <label class="form-label" style="font-family: 'Poppins';">Email</label>
+                    <input class="form-input" type="email" id="email" placeholder="Email Pengguna">
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Password</label>
+                    <input class="form-input" type="password" id="password" placeholder="********" required>
+                </div>
+                <!-- Modify your HTML to remove `onclick` attributes -->
+                <button class="form-button" type="button" id="save-button">Simpan Perubahan</button>
+                <button class="form-button logout-button" type="button" id="logout-button">Keluar</button>
+            </form>
+        </div>
+    </main>
+
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
+            authDomain: "kataloka-995bd.firebaseapp.com",
+            projectId: "kataloka-995bd",
+            storageBucket: "kataloka-995bd.firebasestorage.app",
+            messagingSenderId: "989935904462",
+            appId: "1:989935904462:web:1f7d64db97686afd7cd29f",
+            measurementId: "G-0X8CY7D8EM"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Function to handle authentication state and load profile data
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Set email from Firebase Auth
+                document.getElementById("email").value = user.email;
+
+                try {
+                    // Fetch full name from Firestore
+                    const userRef = doc(db, "users", user.uid);
+                    const docSnap = await getDoc(userRef);
+                    if (docSnap.exists()) {
+                        document.getElementById("name").value = docSnap.data().fullName || "";
+                    } else {
+                        console.error("No such document in Firestore!");
+                    }
+                } catch (error) {
+                    console.error("Error fetching user data from Firestore:", error);
+                }
+            } else {
+                // Redirect to login if no user is signed in
+                window.location.href = "/login.html";
+            }
+        });
+
+// Make both functions accessible globally
+// Make sure this code is inside your script block or module
+
+// Attach functions to window for debugging, though this step should not be necessary
+        window.updateProfile = updateProfile;
+        window.logout = logout;
+
+        // Function to handle saving profile changes
+        async function updateProfile() {
+            const user = auth.currentUser;
+            const fullName = document.getElementById("name").value;
+
+            if (user) {
+                try {
+                    const userRef = doc(db, "users", user.uid);
+                    await updateDoc(userRef, { fullName: fullName });
+                    alert("Profil berhasil diperbarui!");
+                } catch (error) {
+                    console.error("Error updating profile:", error);
+                    alert("Gagal memperbarui profil.");
+                }
+            } else {
+                alert("User tidak terautentikasi.");
+            }
+        }
+
+        // Function to handle logout with confirmation
+        async function logout() {
+            const confirmLogout = confirm("Apakah Anda yakin ingin keluar?");
+            
+            if (confirmLogout) {
+                try {
+                    await signOut(auth);
+                    alert("Berhasil keluar.");
+                    window.location.href = "/index.html"; // Redirect to index.html after logout
+                } catch (error) {
+                    console.error("Error during logout:", error);
+                    alert("Gagal keluar.");
+                }
+            } else {
+                console.log("User canceled logout.");
+            }
+        }
+
+        // Add event listeners after the DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("save-button").addEventListener("click", updateProfile);
+            document.getElementById("logout-button").addEventListener("click", logout);
+        });
+
+
+
+        
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+    </footer>
+</body>
+</html>

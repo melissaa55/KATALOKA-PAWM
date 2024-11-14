@@ -1,28 +1,13 @@
 .words-container {
-    margin: 30px 440px;
-    padding: 0px 10px;
-    border-radius: 10px;
-    display: grid; 
-    grid-template-columns: repeat(2, 1fr);
-    background-color: rgba(125, 177, 154, 0.145);
-}
-
-
-.word-box {
-    width: 250px;
-    height: 60px;
-    margin: 30px;
+    padding: 30px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
-    align-items: center;
-    border: 1px solid #0b352d;
-    border-radius: 10px;
-    background-color: var(--green);
-    color: var(--beige);
-    font-size: 20px;
-    font-weight: bold;
+    gap: 60px;
+    max-width: 1200px; /* Batas lebar untuk membuat 3 kolom */
+    margin: 0 auto; 
 }
+
 
 body {
     font-family: Arial, sans-serif;
@@ -62,11 +47,48 @@ header p {
     color: #555; 
 }
 
-
+.word-box {
+    text-decoration: none;
+    border: 10px solid #123d2d;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    height: 150px;
+    background-color: #ffffeb;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 
 .word-box:hover {
-    transform: scale(1.05); 
+    transition: scale(1.05);
+    cursor: pointer; 
+    background-color: #1152463e;
 }
+
+.word-image {
+    width: 80px; /* Sesuaikan ukuran gambar */
+    height: auto; /* Menjaga proporsi gambar */
+}
+
+.word-box:active {
+    transform: scale(1.05); /* Slightly shrink to simulate button press */
+    background-color: #d4dccc; /* Darker background on click */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15); /* Reduce shadow to look pressed */
+}
+
+
+.word-title {
+    font-family: "Poppins";
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #123d2d;
+    text-align: center;
+    margin-left: 10px;
+}
+
 
 @media (max-width: 768px) {
     .words-container {

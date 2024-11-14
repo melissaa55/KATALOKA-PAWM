@@ -1,0 +1,81 @@
+/* Center container styling */
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.image-container img {
+    max-width: 80%;
+    height: auto;
+}
+
+/* Button container styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* General button styling */
+.button {
+    font-family: "Poppins";
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 20px;
+    margin-top: 0;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.2s, border-color 0.2s;
+    width: 160px;
+    height: 60px;
+    background-size: 200%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Back button styling */
+.button-back {
+    background: linear-gradient(135deg, #FAF1E6, #E4EFE7, #E8ECD6, #AFC8AD); 
+    border: 1px solid #AFC8AD;
+    color: #115246;
+}
+
+.button-back:hover {
+    border-color: #cbd2a4; /* Change border color on hover to match new gradient */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+.button-back:active {
+    transform: translateY(2px); /* Simulates a press-down effect */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow on press */
+    border-color: #afc8ad; /* Darker border on press */
+}
+
+/* Start button styling */
+.button-start {
+    background: linear-gradient(135deg, #FAF1E6, #E4EFE7, #E8ECD6, #AFC8AD); 
+    border: 1px solid #AFC8AD;
+    color: #115246;
+}
+
+.button-start:hover {
+    border-color: #cbd2a4; /* Change border color on hover to match new gradient */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+
+.button-start:active {
+    transform: translateY(2px); /* Simulates a press-down effect */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow on press */
+    border-color: #afc8ad; /* Darker border on press */
+}
+
+.judulkuis {
+    font-size: 1.5rem;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Poppins";
+    margin: 0;
+}

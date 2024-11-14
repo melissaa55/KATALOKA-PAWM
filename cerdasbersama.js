@@ -131,21 +131,17 @@ function displayNumbers() {
         }
 
         numbersContainer.appendChild(numberBox);
-    };
-
+    }
 }
+
 function displayQuestion(index) {
     const questionContainer = document.getElementById('question-container');
     const answersBox = document.querySelector('.answers-box');
     const feedbackContainer = document.getElementById('feedback');
 
- 
-    feedbackContainer.textContent = '';
+    feedbackContainer.textContent = ''; // Clear feedback text
 
-   
     questionContainer.textContent = questions[index].question;
-
-
     answersBox.innerHTML = ''; 
     questions[index].answers.forEach((answer, i) => {
         const answerContainer = document.createElement('div');
@@ -157,7 +153,6 @@ function displayQuestion(index) {
         input.id = `answer-${i}`;
         input.value = answer;
 
-       
         if (answers[index] === answer) {
             input.checked = true;
         }
@@ -166,6 +161,7 @@ function displayQuestion(index) {
             answers[index] = answer;
             updateNumberBox(index);
             checkAnswer(index, answer); 
+            updateProgressBar(); // Update progress bar after the answer is selected
         });
 
         const label = document.createElement('label');
@@ -175,26 +171,60 @@ function displayQuestion(index) {
 
         answerContainer.appendChild(input);
         answerContainer.appendChild(label);
-
         answersBox.appendChild(answerContainer);
     });
 
-    document.getElementById('prev-button').disabled = index === 0;
-    document.getElementById('next-button').disabled = index === questions.length - 1;
-
     updateActiveNumber(index); 
+
+    document.getElementById('prev-button').disabled = index === 0;
+
+    const nextButton = document.getElementById('next-button');
+    if (index === questions.length - 1) {
+        nextButton.textContent = "Selesai";
+        nextButton.onclick = finishQuiz;
+    } else {
+        nextButton.textContent = "Selanjutnya";
+        nextButton.onclick = nextQuestion;
+    }
 }
+
+function updateProgressBar() {
+        const progressBar = document.getElementById('progress-bar');
+        const progressPercentage = document.getElementById('progress-percentage');
+        const totalQuestions = questions.length;
+        const answeredQuestions = answers.filter(answer => answer !== undefined).length;
+        const progress = (answeredQuestions / totalQuestions) * 100;
+    
+        // Set the progress bar width only if there is progress
+        progressBar.style.width = answeredQuestions > 0 ? progress + '%' : '0';
+        progressPercentage.textContent = Math.round(progress) + '%';
+    }
 
 function checkAnswer(index, selectedAnswer) {
     const feedbackContainer = document.getElementById('feedback'); 
     const correctAnswer = questions[index].correctAnswer;
+    const answersBox = document.querySelector('.answers-box');
+    
+    // Clear previous styles
+    answersBox.querySelectorAll('.answer-container').forEach(container => {
+        container.classList.remove('correct-answer', 'incorrect-answer');
+    });
 
     if (selectedAnswer === correctAnswer) {
-        feedbackContainer.textContent = 'Benar!';
         feedbackContainer.style.color = 'green';
+
+        // Highlight the correct answer
+        const selectedLabel = answersBox.querySelector(`input[value="${selectedAnswer}"]`).parentElement;
+        selectedLabel.classList.add('correct-answer');
     } else {
-        feedbackContainer.textContent = `Salah. Jawaban yang benar adalah: ${correctAnswer}`;
         feedbackContainer.style.color = 'red';
+
+        // Highlight incorrect and correct answers
+        const selectedLabel = answersBox.querySelector(`input[value="${selectedAnswer}"]`).parentElement;
+        selectedLabel.classList.add('incorrect-answer');
+        
+        const correctLabel = answersBox.querySelector(`input[value="${correctAnswer}"]`).parentElement;
+        correctLabel.classList.add('correct-answer');
     }
 }
 
@@ -225,6 +255,11 @@ function nextQuestion() {
         displayQuestion(currentQuestionIndex);
     }
 }
+
+function finishQuiz() {
+    window.location.href = "quizselesai.html"; // Redirect to the finish page (replace with your target page)
+}
+
 
 window.onload = function () {
     historyStack.push(currentQuestionIndex);

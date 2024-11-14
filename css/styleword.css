@@ -57,41 +57,35 @@ header p {
     margin: 40px auto;
     padding: 30px;
     background-color: #f9f6ef;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 20px solid #115246;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgb(0, 0, 0);
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: "Poppins";
 }
 
 #word-title {
-    font-size: 5em;
+    font-size: 3rem;
     color: #333;
-    font-weight: 600;  /* Use a bold font weight similar to the example */
+    font-weight: bold;  /* Use a bold font weight similar to the example */
     margin: 0;
     line-height: 1.2;
 }
 
-.word-details {
-    font-size: 1.5em;
-    color: #666;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
 
 .part-of-speech {
-    font-style: italic;
-    color: #5a6b74;
+    font-size: 1rem;
+    color: #333333cf;
 }
 
 .pronunciation {
-    color: #666;
+    font-size: 1rem;
+    color: #333333cf;
 }
 
 #meaning-container hr {
     border: none;
-    border-top: 1px solid #ccc;
+    border-top: 5px solid #1152463e;
     margin: 20px 0;
 }
 
@@ -99,52 +93,39 @@ header p {
     font-size: 1.5em;
     color: #333;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin: 0;
 }
 
 .word-definition {
-    font-size: 1.2em;
-    color: #555;
-    line-height: 1.6;
+    font-size: 1rem;
+    color: #333333cf;
+    line-height: 1.2;
 }
 
-/* Container for the cards */
-.words-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-    justify-items: center;
+.did-you-know-title {
+    font-size: 1.5em;
+    color: #333;
+    font-weight: bold;
+    margin: 0;
 }
+
+.did-you-know {
+    font-size: 1rem;
+    color: #333333cf;
+    line-height: 1.2;
+}
+
+
 
 /* Style for each card */
 .word-card {
-    width: 200px;
-    height: 200px;
-    background-color: #f7f4ee;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    position: relative;
-    cursor: pointer;
     transition: transform 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .word-card:hover {
     transform: scale(1.05);
 }
 
-/* Style for the front with question mark */
-.card-front {
-    font-size: 3rem;
-    color: #115246;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 /* Style for the back with word details */
 .card-back {
@@ -170,11 +151,7 @@ header p {
     display: none;
 }
 
-/* Style for the question mark */
-.question-mark {
-    font-size: 3rem;
-    color: #115246;
-}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

@@ -44,20 +44,50 @@ body {
 
 .video-box {
     align-items: center;
+    flex-direction: column;
     display: flex;
     padding: 20px;
     justify-content: center;
     background-color: #fffbed;
     border-radius: 10px;
     box-shadow: 0 8px 8px #2b423e33;
-    transition: transform 0.2s ease-in-out;
-}
-
-.video-box:hover {
-    transform: scale(1.05);
 }
 
 iframe {
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.watched-button {
+    margin-top: 10px;
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #115246;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: "Poppins";
+    font-weight: bold;
+}
+
+.watched-button:hover {
+    background-color: #115246c5;
+}
+
+.watched-button:active {
+    transform: scale(0.98); /* Add a slight scale effect on click to simulate button press */
+}
+
+.watched-button.watched {
+    background-color: #11524680; /* Green color for watched */
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.watched-button.watched::before {
+    content: "✔ "; /* Add a check mark before the text */
+    font-weight: bold;
 }

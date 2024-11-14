@@ -13,3 +13,15 @@
 .form-title {
     color: var(--green);
 }
+
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-image {
+    width: 450px; /* Sesuaikan ukuran sesuai kebutuhan */
+    height: auto;
+    margin-right: 120px; /* Memberi jarak antara gambar dan form */
+}

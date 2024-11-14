@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulai quiz</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="css/cerdasbersama.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="images/quiz.png" alt="Your Image">
+        </div>
+        <div class="button-container">
+            <button class="button button-back" onclick="goBack()">Kembali</button>
+            <button class="button button-start" onclick="goNext()">Mulai</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+
+        // Function to go to the next page
+        function goNext() {
+            window.location.href = "cerdas-bersama.html"; // Replace with the URL of the next page
+        }
+    </script>
+</body>
+</html>

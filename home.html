@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kataloka</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/katapedia-gambar.css">
+    <link rel="stylesheet" href="css/ruang-belajar-gambar.css">
+    <link rel="stylesheet" href="css/cerdasbersama.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <img src="images/Introduction (2).png" alt="Logo Kataloka">
+            </div>
+            <h1>Kataloka</h1>
+            <ul class="nav-list">
+                <li class="nav-list-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-list-item dropdown">
+                    <a class="nav-link dropbtn" href="#">Pilihan</a>
+                    <ul class="dropdown-content">
+                        <li><a href="/katapedia.html">Katapedia</a></li>
+                        <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
+                        <li><a href="/cerdas-bersama.html">Cerdas Bersama</a></li>
+                    </ul>
+                </li>
+                <li class="nav-list-item auth"><a id="login-button" class="nav-link" href="/profile.html">Profil</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about" style="font-family: 'Poppins';">
+            <h2>Selamat Datang di Kataloka!</h2>
+            <p>Kataloka adalah platform pembelajaran bahasa Indonesia berbasis virtual yang dirancang untuk membantu pengguna mengembangkan kemampuan berbahasa secara interaktif dan menyenangkan. Di sini, kalian dapat mengeksplorasi berbagai materi pembelajaran interaktif yang dirancang untuk memperluas wawasan dan mengembangkan keterampilan kalian. Mari belajar dengan cara yang menyenangkan dan efektif bersama Kataloka!</p>
+        </section>
+
+        <section id="features" style="font-family: 'Poppins';">
+            <h2>Pilihan Belajar</h2>
+            <div class="feature-container">
+                <a href="/katapedia.html" class="feature-link">
+                    <div class="feature">
+                        <div class="feature-content">
+                            <img src="images\Untitled design (1).png" alt="Gambar Katapedia" class="feature-image">
+                            <h3>Katapedia</h3>
+                        </div>
+                        <p>Menjelajahi kosakata sehari-hari dengan Katapedia.</p>
+                    </div>
+                </a>
+                <a href="/ruang-belajar.html" class="feature-link">
+                    <div class="feature">
+                        <div class="feature-content">
+                            <img src="images\Untitled design (2).png" alt="Gambar Katapedia" class="feature-image1">
+                            <h3>Ruang Belajar</h3>
+                        </div>
+                        <p>Tempat belajar interaktif yang menyediakan video pembelajaran untuk membantu kalian mempelajari bahasa Indonesia secara terstruktur dan mendalam.</p>
+                    </div>
+                </a>
+                <a href="/quiz.html" class="feature-link">
+                    <div class="feature">
+                        <div class="feature-content">
+                            <img src="images\Untitled design (3).png" alt="Gambar Katapedia" class="feature-image2">
+                            <h3>Cerdas Bersama</h3>
+                        </div>
+                        <p>Meningkatkan pemahaman dan keterampilan bahasa Indonesia melalui tes untuk mengevaluasi perkembangan kemampuan berbahasa kalian.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+    </footer>
+    <script src="fitur.js"></script>
+</body>
+
+</html>
