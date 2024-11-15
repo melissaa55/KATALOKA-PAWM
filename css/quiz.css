@@ -1,11 +1,11 @@
 /* Center container styling */
 .container {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .image-container img {
-    max-width: 80%;
+    max-width: 50%;
     height: auto;
 }
 

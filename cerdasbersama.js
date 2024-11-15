@@ -158,14 +158,26 @@ const questions = [
             "Siswa, siswi dan, guru hadir di upacara.",
             "Siswa dan, siswi dan guru hadir di upacara."
         ],
-        correctAnswer: "Dia sedang mengirimkan faksmile ke kantor."
+        correctAnswer: "Siswa, siswi, dan guru hadir di upacara."
     }
 ];
 
 let currentQuestionIndex = 0;
 let answers = new Array(questions.length); 
 
-let userAnswers = {};
+document.addEventListener("DOMContentLoaded", () => {
+    auth.onAuthStateChanged(async (user) => {
+        if (user) {
+            console.log("User authenticated:", user.uid);
+            await loadProgress(user.uid); // Muat progress pengguna
+            displayQuestion(currentQuestionIndex);
+            updateProgressBar();
+        } else {
+            console.error("User is not authenticated.");
+            window.location.href = "login.html"; // Redirect ke login jika belum login
+        }
+    });
+});
 
 // Fungsi untuk menampilkan nomor pertanyaan
 function displayNumbers() {
@@ -243,7 +255,11 @@ function displayQuestion(index) {
     const nextButton = document.getElementById('next-button');
     if (index === questions.length - 1) {
         nextButton.textContent = "Selesai";
-        nextButton.onclick = finishQuiz;
+        nextButton.disabled = false; // Pastikan tombol bisa diklik
+        nextButton.onclick = async () => {
+            await finishQuiz();
+            window.location.href = "quizselesai.html"; // Arahkan ke halaman lain
+    };
     } else {
         nextButton.textContent = "Selanjutnya";
         nextButton.onclick = nextQuestion;
@@ -298,19 +314,20 @@ function updateNumberBox(index) {
 async function saveProgress() {
     const user = auth.currentUser;
     if (user) {
-        firestore.collection("users").doc(user.uid).collection("quizProgress").doc("progress")
-        .doc("progress")
-        .get({
-            currentQuestionIndex,
-            answers,
-            progress: document.getElementById('progress').style.width
-        }, { merge: true })
-        .then(() => {
+        const userId = user.uid;
+        const progressRef = doc(db, "users", userId, "quizProgress", "progress");
+
+        try {
+            await setDoc(progressRef, {
+                currentQuestionIndex,
+                answers,
+                progress: document.getElementById('progress').style.width
+            }, { merge: true });
+
             console.log("State saved successfully.");
-        })
-        .catch((error) => {
+        } catch (error) {
             console.error("Error saving state:", error);
-        });
+        }
     } else {
         console.error("User is not authenticated. Cannot save progress.");
     }
@@ -320,55 +337,39 @@ async function saveProgress() {
 async function loadProgress() {
     const user = auth.currentUser;
     if (user) {
-        const userId = user.uid;
-        const docRef = doc(db, "users", userId, "quizProgress", "progress");
+        const progressRef = doc(db, "users", user.uid, "quizProgress", "progress");
         try {
-            const docSnap = await getDoc(docRef);
+            const docSnap = await getDoc(progressRef);
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 currentQuestionIndex = data.currentQuestionIndex || 0;
                 answers = data.answers || new Array(questions.length);
+                console.log("Progress loaded successfully.");
+            } else {
+                console.log("No progress found for this user.");
             }
-            displayNumbers();
-            displayQuestion(currentQuestionIndex);
-            updateProgressBar(); // Update progress bar after loading progress
         } catch (error) {
-            console.error("Error retrieving progress: ", error);
+            console.error("Error loading progress:", error);
         }
     } else {
         console.error("User is not authenticated. Cannot load progress.");
     }
 }
 
-function displayFinalScore() {
+function calculateFinalScore() {
     let score = 0;
     questions.forEach((question, index) => {
-        if (answers[index] === item.correctAnswer) {
-            score += 1;
+        if (answers[index] === question.correctAnswer) {
+            score += 1; // Tambahkan poin untuk jawaban yang benar
         }
     });
-
-    const scoreMessage = `Skor kamu: ${score} dari ${questions.length}`;
-    const finishPage = document.getElementById('finish-page');
-    const scoreDisplayElement = document.createElement('p');
-    scoreDisplayElement.classList.add('score-display');
-    scoreDisplayElement.textContent = scoreMessage;
-
-    if (!finishPage.querySelector('.score-display')) {
-        finishPage.appendChild(scoreDisplayElement);
-    }
+    return score;
 }
 
 // Pastikan fungsi ini dipanggil saat pengguna sudah terautentikasi
 
 
 // Tampilkan pertanyaan pertama saat halaman dimuat dan ambil progress
-window.onload = function() {
-    displayNumbers();
-    loadProgress(); // Ambil progress
-    displayQuestion(0); // Tampilkan pertanyaan pertama
-    updateProgressBar(); // Pastikan progress bar diperbarui pada awal
-};
 
 function prevQuestion() {
     if (currentQuestionIndex > 0) {
@@ -393,16 +394,41 @@ function nextQuestion() {
 }
 
 // Fungsi untuk mengakhiri kuis
-function finishQuiz() {
-    saveProgress();
-    window.location.href = "quizselesai.html"; // Ganti dengan halaman selesai kuis
+async function finishQuiz() {
+    const user = auth.currentUser;
+    if (user) {
+        const resultRef = doc(db, "users", user.uid, "quizProgress", "result");
+        const finalScore = calculateFinalScore();
+        try {
+            await setDoc(resultRef, {
+                finalScore: finalScore,
+                totalQuestions: questions.length,
+                timestamp: new Date().toISOString()
+            });
+            console.log("Final score saved successfully.");
+            alert(`Kuis selesai! Skor Anda: ${finalScore} dari ${questions.length}`);
+            window.location.href = "index.html";
+        } catch (error) {
+            console.error("Error saving final score:", error);
+        }
+    } else {
+        console.error("User is not authenticated. Cannot save score.");
+    }
 }
+
+
 
 function updateActiveNumber(index) {
     const numberBoxes = document.querySelectorAll('.number-box');
     numberBoxes.forEach(box => box.classList.remove('active'));
     numberBoxes[index].classList.add('active');
-
+    
 }
 
+window.onload = function() {
+    displayNumbers();
+    loadProgress(); // Ambil progress
+    displayQuestion(0); // Tampilkan pertanyaan pertama
+    updateProgressBar(); // Pastikan progress bar diperbarui pada awal
+};
 

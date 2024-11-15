@@ -1,23 +1,23 @@
 .feature {
-    padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     text-align: center;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .feature-content {
     display: flex;
+    flex-direction: column; /* Centers the content vertically */
     align-items: center;
     justify-content: center;
-
 }
 
 .feature-image1 {
-    width: 100px; /* Sesuaikan ukuran gambar sesuai kebutuhan */
+    width: 80px; /* Sesuaikan ukuran gambar sesuai kebutuhan */
     height: auto;
-    flex-shrink: 0;
-    position: absolute;
-    right: 550px;
+    display: flex;
     
 }

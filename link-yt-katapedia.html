@@ -85,16 +85,15 @@
                 }
             });
                         // Select all buttons with the 'watched-button' class
-                const markWatchedButtons = document.querySelectorAll(".watched-button");
+                const markWatched = document.querySelectorAll(".watched-button");
             
-                markWatchedButtons.forEach(button => {
-                button.addEventListener("click", () => {
-                                // Retrieve the video ID from the 'data-video-id' attribute
-                const videoId = button.getAttribute("data-video-id");
-                toggleWatchedState(button, videoId);
+                markWatched.forEach(button => {
+                    button.addEventListener("click", () => {
+                        const videoId = button.getAttribute("video");
+                        toggleWatchedState(button, videoId);
+                    });
                 });
             });
-        });
         
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -155,7 +154,7 @@
                     console.log(`Video ID: ${videoId}, Data:`, data);
         
                     // Update the button status if it exists
-                    const watchedButton = document.querySelector(`[data-video-id="${videoId}"]`);
+                    const watchedButton = document.querySelector(`[video="${videoId}"]`);
                     if (watchedButton) {
                         watchedButton.classList.add('watched');
                         watchedButton.textContent = "Ditonton";
@@ -209,7 +208,7 @@
                     const watchedButton = document.createElement('button');
                     watchedButton.textContent = "Telah Ditonton";
                     watchedButton.classList.add('watched-button');
-                    watchedButton.setAttribute('data-video-id', videoId);
+                    watchedButton.setAttribute('video', videoId);
         
                     // Use await loadWatchedStatus to check if video is watched
                     if (await loadWatchedStatus(videoId)) {
