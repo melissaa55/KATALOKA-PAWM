@@ -45,13 +45,12 @@
                 </div>
                 <div class="form-field">
                     <label class="form-label" style="font-family: 'Poppins';">Email</label>
-                    <input class="form-input" type="email" id="email" placeholder="Email Pengguna">
+                    <input class="form-input" type="email" id="email" placeholder="Email Pengguna" readonly>
                 </div>
                 <div class="form-field">
                     <label class="form-label">Password</label>
                     <input class="form-input" type="password" id="password" placeholder="********" required>
                 </div>
-                <!-- Modify your HTML to remove `onclick` attributes -->
                 <button class="form-button" type="button" id="save-button">Simpan Perubahan</button>
                 <button class="form-button logout-button" type="button" id="logout-button">Keluar</button>
             </form>
@@ -59,9 +58,8 @@
     </main>
 
     <script type="module">
-        // Import Firebase functions
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, signOut, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -74,19 +72,15 @@
             measurementId: "G-0X8CY7D8EM"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Function to handle authentication state and load profile data
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // Set email from Firebase Auth
                 document.getElementById("email").value = user.email;
 
                 try {
-                    // Fetch full name from Firestore
                     const userRef = doc(db, "users", user.uid);
                     const docSnap = await getDoc(userRef);
                     if (docSnap.exists()) {
@@ -98,64 +92,82 @@
                     console.error("Error fetching user data from Firestore:", error);
                 }
             } else {
-                // Redirect to login if no user is signed in
                 window.location.href = "/login.html";
             }
         });
 
-// Make both functions accessible globally
-// Make sure this code is inside your script block or module
-
-// Attach functions to window for debugging, though this step should not be necessary
-        window.updateProfile = updateProfile;
-        window.logout = logout;
-
-        // Function to handle saving profile changes
         async function updateProfile() {
             const user = auth.currentUser;
             const fullName = document.getElementById("name").value;
-
+            const newPassword = document.getElementById("password").value;
+        
             if (user) {
                 try {
+                    // Update full name in Firestore
                     const userRef = doc(db, "users", user.uid);
                     await updateDoc(userRef, { fullName: fullName });
-                    alert("Profil berhasil diperbarui!");
+                    console.log("Nama berhasil diperbarui di Firestore.");
+        
+                    // Re-authenticate the user before updating the password
+                    if (newPassword) {
+                        const currentPassword = prompt("Masukkan password saat ini:");
+        
+                        // Validate current password
+                        if (!currentPassword) {
+                            alert("Password saat ini harus diisi.");
+                            return;
+                        }
+        
+                        const credential = EmailAuthProvider.credential(user.email, currentPassword);
+        
+                        try {
+                            await reauthenticateWithCredential(user, credential);
+                            console.log("Re-autentikasi berhasil.");
+        
+                            // Update the password
+                            await updatePassword(user, newPassword);
+                            alert("Password berhasil diperbarui!");
+                        } catch (reauthError) {
+                            console.error("Gagal re-autentikasi:", reauthError);
+        
+                            // Handle specific errors
+                            if (reauthError.code === 'auth/wrong-password') {
+                                alert("Password saat ini salah. Silakan coba lagi.");
+                            } else if (reauthError.code === 'auth/too-many-requests') {
+                                alert("Terlalu banyak percobaan. Silakan coba lagi nanti.");
+                            } else {
+                                alert("Gagal re-autentikasi. Silakan coba lagi.");
+                            }
+                        }
+                    }
                 } catch (error) {
-                    console.error("Error updating profile:", error);
-                    alert("Gagal memperbarui profil.");
+                    console.error("Error saat memperbarui profil atau password:", error);
+                    alert("Gagal memperbarui profil atau password.");
                 }
             } else {
                 alert("User tidak terautentikasi.");
             }
         }
-
-        // Function to handle logout with confirmation
+        
+        
         async function logout() {
             const confirmLogout = confirm("Apakah Anda yakin ingin keluar?");
-            
             if (confirmLogout) {
                 try {
                     await signOut(auth);
                     alert("Berhasil keluar.");
-                    window.location.href = "/index.html"; // Redirect to index.html after logout
+                    window.location.href = "/index.html";
                 } catch (error) {
                     console.error("Error during logout:", error);
                     alert("Gagal keluar.");
                 }
-            } else {
-                console.log("User canceled logout.");
             }
         }
 
-        // Add event listeners after the DOM is fully loaded
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("save-button").addEventListener("click", updateProfile);
             document.getElementById("logout-button").addEventListener("click", logout);
         });
-
-
-
-        
     </script>
 
     <footer>

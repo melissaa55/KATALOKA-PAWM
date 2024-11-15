@@ -39,13 +39,198 @@
     </footer>
 
         <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module">
+            // Import necessary Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+        
+            // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
+            authDomain: "kataloka-995bd.firebaseapp.com",
+            projectId: "kataloka-995bd",
+            storageBucket: "kataloka-995bd.firebasestorage.app",
+            messagingSenderId: "989935904462",
+            appId: "1:989935904462:web:1f7d64db97686afd7cd29f",
+            measurementId: "G-0X8CY7D8EM"
+        };
+        
+            // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
 
-    <!-- Firebase Firestore -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-    <script src="scriptytmodulcerdas.js"></script>
+        document.addEventListener("DOMContentLoaded", () => {
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    console.log("User signed in:", user.uid);
+            
+                    // Pastikan dokumen pengguna ada di Firestore
+                    const userRef = doc(db, 'users', user.uid);
+                    const userDoc = await getDoc(userRef);
+            
+                    if (!userDoc.exists()) {
+                        // Inisialisasi dokumen pengguna jika belum ada
+                        await setDoc(userRef, { watchedVideos: [] });
+                    }
+            
+                    // Setelah validasi, muat data video
+                    displayLinks();
+                    loadWatchedVideos(user);
+                } else {
+                    console.error("User is not signed in.");
+                    window.location.href = "login.html"; // Redirect ke halaman login
+                }
+            });
+                        // Select all buttons with the 'watched-button' class
+                const markWatchedButtons = document.querySelectorAll(".watched-button");
+            
+                markWatchedButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                                // Retrieve the video ID from the 'data-video-id' attribute
+                const videoId = button.getAttribute("data-video-id");
+                toggleWatchedState(button, videoId);
+                });
+            });
+        });
+        
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const word = urlParams.get('word');
+
+        const wordLinksMap = {
+            "Ejaan": ["iBD-zpM4nak", "hjpT8gP_4js", "TBBBm8a62mE", "Oi8xSvDCZ7w", "jdLuv8clJiQ", "Cm-lw9RbKxQ", "bgA5EgM-B9U", "Ljr42qNJ0-8", "3BubG7sRsRs"],
+            "Tata Kata": ["UCQ5pJoWznQ", "GMY2Gp6uOBM", "2Rbsl7LWhZU", "CLKdmfFtlAY"],
+            "Tata Kalimat": ["2RR6m5RFKf0", "vof0n1e3qDU", "evW3BopOw7k", "Ty6dfHKCCBg", "DY75Um_sD14", "8VWFkKqNGcA", "UkHiqZxhSoY"],
+            "Paragraf": ["38PmUC6VMkM", "b2RgcP7zts", "URCrn71q9Ng", "54bJF8sZSbc", "SPhRq5msUFs"],
+            "Karya Tulis Ilmiah (1)": ["agvtdJ-k8aI", "LiVblsdBhcI", "4VN2DbVT4Ao"],
+            "Karya Tulis Ilmiah (2)": ["Pxxqx5qQfms", "_25GVr59HOg", "5hcleKYEhYo", "brojTczcHdI"]
+        };
+
+        
+        async function loadWatchedStatus(videoId) {
+            const user = auth.currentUser;
+            if (user) {
+                const docRef = doc(db, 'watchedStatus', user.uid, 'videos', videoId);
+                const docSnap = await getDoc(docRef);
+                return docSnap.exists() && docSnap.data().watched === true;
+            }
+            return false;
+        }
+
+        async function toggleWatchedState(button, videoId) {
+            const user = auth.currentUser;
+            if (!user) {
+                console.error("User is not authenticated.");
+                return;
+            }
+            console.log("User ID:", user.uid);
+            console.log("Video ID:", videoId);
+        
+            const docRef = doc(db, 'users', user.uid, 'watchedStatus', videoId);
+            const isWatched = button.classList.contains('watched');
+            try {
+                await setDoc(docRef, { watched: !isWatched }, { merge: true });
+                button.classList.toggle('watched');
+                button.textContent = isWatched ? "Telah Ditonton" : "Ditonton";
+            } catch (error) {
+                console.error("Error updating watched state:", error);
+            }
+        }
+
+        async function loadWatchedVideos(user) {
+            try {
+                // Reference the 'watchedStatus' sub-collection
+                const watchedStatusRef = collection(db, 'users', user.uid, 'watchedStatus');
+                
+                // Fetch all documents in the 'watchedStatus' sub-collection
+                const watchedDocs = await getDocs(watchedStatusRef);
+                
+                // Process each document
+                watchedDocs.forEach(doc => {
+                    const videoId = doc.id; // The document ID is the video ID
+                    const data = doc.data(); // Contains any additional fields if stored
+                    console.log(`Video ID: ${videoId}, Data:`, data);
+        
+                    // Update the button status if it exists
+                    const watchedButton = document.querySelector(`[data-video-id="${videoId}"]`);
+                    if (watchedButton) {
+                        watchedButton.classList.add('watched');
+                        watchedButton.textContent = "Ditonton";
+                    }
+                });
+            } catch (error) {
+                console.error("Error fetching watched videos:", error);
+            }
+        }
+        
+
+        
+
+        async function markAsWatched(videoId) {
+            const user = auth.currentUser;
+            if (user) {
+                const userId = user.uid;
+                try {
+                    // Simpan status "watched" di Firestore
+                    await setDoc(doc(db, "users", userId, "watchedStatus", videoId), {
+                    });
+                } catch (error) {
+                    console.error("Error writing document:", error);
+                }
+            } else {
+                console.log("User is not logged in. Redirecting to login page.");
+                window.location.href = "login.html";
+            }
+        }
+
+        
+
+
+        async function displayLinks() {
+            const container = document.getElementById('links-container');
+            const videoIds = wordLinksMap[word];
+        
+            if (videoIds && videoIds.length > 0) {
+                // Use a for...of loop to allow await within the loop
+                for (const videoId of videoIds) {
+                    const videoBox = document.createElement('div');
+                    videoBox.classList.add('video-box');
+        
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                    iframe.width = "350";
+                    iframe.height = "220";
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+                    iframe.allowFullscreen = true;
+        
+                    const watchedButton = document.createElement('button');
+                    watchedButton.textContent = "Telah Ditonton";
+                    watchedButton.classList.add('watched-button');
+                    watchedButton.setAttribute('data-video-id', videoId);
+        
+                    // Use await loadWatchedStatus to check if video is watched
+                    if (await loadWatchedStatus(videoId)) {
+                        watchedButton.classList.add('watched');
+                        watchedButton.textContent = "Ditonton";
+                    }
+        
+                    watchedButton.onclick = () => toggleWatchedState(watchedButton, videoId);
+        
+                    videoBox.appendChild(iframe);
+                    videoBox.appendChild(watchedButton);
+                    container.appendChild(videoBox);
+                }
+            } else {
+                container.textContent = "Tidak ada video ditemukan.";
+            }
+        }
+
+
+        window.onload = displayLinks;
+
+    </script>
 </body>
 </html>

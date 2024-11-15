@@ -1,3 +1,54 @@
+// Import Firebase functions
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
+    authDomain: "kataloka-995bd.firebaseapp.com",
+    projectId: "kataloka-995bd",
+    storageBucket: "kataloka-995bd.firebasestorage.app",
+    messagingSenderId: "989935904462",
+    appId: "1:989935904462:web:1f7d64db97686afd7cd29f",
+    measurementId: "G-0X8CY7D8EM"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app); // Initialize Firestore
+
+document.addEventListener("DOMContentLoaded", () => {
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            firestore.collection("users").doc(user.uid).collection("quizProgress")
+                .doc("progress")
+                .get()
+                .then(doc => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        currentQuestionIndex = data.currentQuestion || 0;
+                        answersnswers = data.selectedAnswers || {};
+                        document.getElementById('progress').style.width = data.progress || '0%';
+                        if (currentQuestionIndex === 4 && typeof answers[currentQuestionIndex+1] !== "undefined" ) {
+                            displayQuestion(5);
+                        } else {
+                            displayQuestion(currentQuestionIndex);
+                        }
+                        
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching state:", error);
+                    loadQuestion(currentQuestionIndex);
+                });
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+});
+// Array Pertanyaan
 const questions = [
     {
         question: "Manakah penulisan kata yang sesuai dengan EYD?",
@@ -113,8 +164,10 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let answers = new Array(questions.length); 
-let historyStack = [];
 
+let userAnswers = {};
+
+// Fungsi untuk menampilkan nomor pertanyaan
 function displayNumbers() {
     const numbersContainer = document.getElementById('numbers-container');
     numbersContainer.innerHTML = '';
@@ -125,21 +178,25 @@ function displayNumbers() {
         numberBox.addEventListener('click', () => {
             currentQuestionIndex = i;
             displayQuestion(i);
+            updateProgressBar(); // Update progress bar when question changes
         });
         if (answers[i] !== undefined) {
             numberBox.classList.add('answered');
         }
-
         numbersContainer.appendChild(numberBox);
     }
 }
 
+// Fungsi untuk menampilkan pertanyaan dan pilihan jawaban
 function displayQuestion(index) {
     const questionContainer = document.getElementById('question-container');
     const answersBox = document.querySelector('.answers-box');
-    const feedbackContainer = document.getElementById('feedback');
+    const progressBar = document.getElementById('progress');
 
-    feedbackContainer.textContent = ''; // Clear feedback text
+    if (!questionContainer || !answersBox) {
+        console.error("Question container or answers box not found in HTML.");
+        return;
+    }
 
     questionContainer.textContent = questions[index].question;
     answersBox.innerHTML = ''; 
@@ -153,6 +210,11 @@ function displayQuestion(index) {
         input.id = `answer-${i}`;
         input.value = answer;
 
+        const label = document.createElement('label');
+        label.classList.add('answer-label');
+        label.htmlFor = `answer-${i}`;
+        label.textContent = answer;
+
         if (answers[index] === answer) {
             input.checked = true;
         }
@@ -161,13 +223,11 @@ function displayQuestion(index) {
             answers[index] = answer;
             updateNumberBox(index);
             checkAnswer(index, answer); 
-            updateProgressBar(); // Update progress bar after the answer is selected
+            saveProgress(); // Save progress after each answer
+            updateProgressBar();
+             // Update progress bar immediately after an answer is selected
         });
 
-        const label = document.createElement('label');
-        label.classList.add('answer-label');
-        label.htmlFor = `answer-${i}`;
-        label.textContent = answer;
 
         answerContainer.appendChild(input);
         answerContainer.appendChild(label);
@@ -176,7 +236,9 @@ function displayQuestion(index) {
 
     updateActiveNumber(index); 
 
-    document.getElementById('prev-button').disabled = index === 0;
+    const prevButton = document.getElementById('prev-button');
+    prevButton.disabled = index === 0;
+    prevButton.onclick = prevQuestion; // Add event listener for prev button
 
     const nextButton = document.getElementById('next-button');
     if (index === questions.length - 1) {
@@ -188,38 +250,34 @@ function displayQuestion(index) {
     }
 }
 
+// Fungsi untuk update progress bar
 function updateProgressBar() {
-        const progressBar = document.getElementById('progress-bar');
-        const progressPercentage = document.getElementById('progress-percentage');
-        const totalQuestions = questions.length;
-        const answeredQuestions = answers.filter(answer => answer !== undefined).length;
-        const progress = (answeredQuestions / totalQuestions) * 100;
-    
-        // Set the progress bar width only if there is progress
-        progressBar.style.width = answeredQuestions > 0 ? progress + '%' : '0';
-        progressPercentage.textContent = Math.round(progress) + '%';
-    }
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercentage = document.getElementById('progress-percentage');
+    const totalQuestions = questions.length;
+    const answeredQuestions = answers.filter(answer => answer !== undefined).length;
+    const progress = (answeredQuestions / totalQuestions) * 100;
 
+    progressBar.style.width = answeredQuestions > 0 ? progress + '%' : '0';
+    progressPercentage.textContent = Math.round(progress) + '%';
+}
+
+// Fungsi untuk memeriksa jawaban
 function checkAnswer(index, selectedAnswer) {
     const feedbackContainer = document.getElementById('feedback'); 
     const correctAnswer = questions[index].correctAnswer;
     const answersBox = document.querySelector('.answers-box');
     
-    // Clear previous styles
     answersBox.querySelectorAll('.answer-container').forEach(container => {
         container.classList.remove('correct-answer', 'incorrect-answer');
     });
 
     if (selectedAnswer === correctAnswer) {
         feedbackContainer.style.color = 'green';
-
-        // Highlight the correct answer
         const selectedLabel = answersBox.querySelector(`input[value="${selectedAnswer}"]`).parentElement;
         selectedLabel.classList.add('correct-answer');
     } else {
         feedbackContainer.style.color = 'red';
-
-        // Highlight incorrect and correct answers
         const selectedLabel = answersBox.querySelector(`input[value="${selectedAnswer}"]`).parentElement;
         selectedLabel.classList.add('incorrect-answer');
         
@@ -235,34 +293,116 @@ function updateNumberBox(index) {
     }
 }
 
-function updateActiveNumber(index) {
-    const numberBoxes = document.querySelectorAll('.number-box');
-    numberBoxes.forEach(box => box.classList.remove('active'));
-    numberBoxes[index].classList.add('active');
+
+// Fungsi untuk menyimpan progress ke Firestore
+async function saveProgress() {
+    const user = auth.currentUser;
+    if (user) {
+        firestore.collection("users").doc(user.uid).collection("quizProgress").doc("progress")
+        .doc("progress")
+        .get({
+            currentQuestionIndex,
+            answers,
+            progress: document.getElementById('progress').style.width
+        }, { merge: true })
+        .then(() => {
+            console.log("State saved successfully.");
+        })
+        .catch((error) => {
+            console.error("Error saving state:", error);
+        });
+    } else {
+        console.error("User is not authenticated. Cannot save progress.");
+    }
 }
+
+// Fungsi untuk mengambil progress dari Firestore
+async function loadProgress() {
+    const user = auth.currentUser;
+    if (user) {
+        const userId = user.uid;
+        const docRef = doc(db, "users", userId, "quizProgress", "progress");
+        try {
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                currentQuestionIndex = data.currentQuestionIndex || 0;
+                answers = data.answers || new Array(questions.length);
+            }
+            displayNumbers();
+            displayQuestion(currentQuestionIndex);
+            updateProgressBar(); // Update progress bar after loading progress
+        } catch (error) {
+            console.error("Error retrieving progress: ", error);
+        }
+    } else {
+        console.error("User is not authenticated. Cannot load progress.");
+    }
+}
+
+function displayFinalScore() {
+    let score = 0;
+    questions.forEach((question, index) => {
+        if (answers[index] === item.correctAnswer) {
+            score += 1;
+        }
+    });
+
+    const scoreMessage = `Skor kamu: ${score} dari ${questions.length}`;
+    const finishPage = document.getElementById('finish-page');
+    const scoreDisplayElement = document.createElement('p');
+    scoreDisplayElement.classList.add('score-display');
+    scoreDisplayElement.textContent = scoreMessage;
+
+    if (!finishPage.querySelector('.score-display')) {
+        finishPage.appendChild(scoreDisplayElement);
+    }
+}
+
+// Pastikan fungsi ini dipanggil saat pengguna sudah terautentikasi
+
+
+// Tampilkan pertanyaan pertama saat halaman dimuat dan ambil progress
+window.onload = function() {
+    displayNumbers();
+    loadProgress(); // Ambil progress
+    displayQuestion(0); // Tampilkan pertanyaan pertama
+    updateProgressBar(); // Pastikan progress bar diperbarui pada awal
+};
 
 function prevQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex = currentQuestionIndex - 1
         displayQuestion(currentQuestionIndex);
+        updateProgressBar(); // Update progress bar when moving to the next question
+        saveProgress(); // Save progress after moving to the previous question
     }
 }
 
+// Fungsi untuk melanjutkan ke pertanyaan berikutnya
 function nextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        historyStack.push(currentQuestionIndex);
+        if (answers[currentQuestionIndex] != undefined) {
+            currentQuestionIndex++;
+        }
         displayQuestion(currentQuestionIndex);
+        updateProgressBar(); // Update progress bar when moving to the next question
+        saveProgress(); // Save progress after moving to the previous question
+        
     }
 }
 
+// Fungsi untuk mengakhiri kuis
 function finishQuiz() {
-    window.location.href = "quizselesai.html"; // Redirect to the finish page (replace with your target page)
+    saveProgress();
+    window.location.href = "quizselesai.html"; // Ganti dengan halaman selesai kuis
+}
+
+function updateActiveNumber(index) {
+    const numberBoxes = document.querySelectorAll('.number-box');
+    numberBoxes.forEach(box => box.classList.remove('active'));
+    numberBoxes[index].classList.add('active');
+
 }
 
 
-window.onload = function () {
-    historyStack.push(currentQuestionIndex);
-    displayNumbers();
-    displayQuestion(currentQuestionIndex);
-};

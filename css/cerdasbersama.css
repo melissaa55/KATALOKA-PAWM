@@ -322,3 +322,9 @@ button:disabled {
     cursor: pointer; /* Shows pointer to indicate clickable area */
 }
 
+.number-box.active {
+    background-color: #4CAF50; /* Warna latar belakang saat aktif */
+    color: white;
+    font-weight: bold;
+}
+
