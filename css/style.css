@@ -1,6 +1,6 @@
 :root{
-    --green: #115246;
-    --beige: #fffbed;
+    --green: #638666;
+    --beige: #fff2e2;
     --red: #543b2f;
     --white: #fff;
 }
@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--beige);
-    min-height: 100vh;
+    /* min-height: 100vh; */
 }
 
 header {
@@ -152,6 +152,7 @@ h2 {
 }
 
 #about h2 {
+    margin-bottom: 0px;
     text-align: center;
     font-family: 'Poppins';
     font-weight: 1500;
@@ -160,13 +161,14 @@ h2 {
 }
 
 #about p {
-    margin-top: 20px;
+    margin-bottom: 20px;
     justify-content: center;
     font-family: 'Poppins';
     font-size: 1rem;
 }
 
 .feature-container {
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -182,7 +184,7 @@ h2 {
     border-radius: 7px;
     box-shadow: 0 2px 5px #1152465d;
     text-align: center;
-    color: var(--green);
+    color: #115246;
     transition: box-shadow 0.3s;
 }
 
@@ -190,11 +192,6 @@ h2 {
     box-shadow: 0 5px 15px #11524675;
 }
 
-#features h2 {
-    text-align: center;
-    font-size: 1.5rem;
-    font-family: 'Poppins';
-}
 
 footer {
     text-align: center;
@@ -210,14 +207,17 @@ footer p {
 }
 
 .feature h3 {
+    font-family: "Poppins";
     /* Menghindari tabrakan dengan gambar */
-    font-size: 24px; /* Sesuaikan ukuran teks sesuai kebutuhan */
+    font-size: 20px; /* Sesuaikan ukuran teks sesuai kebutuhan */
     font-weight: bold; /* Tambahkan untuk mempertebal teks jika diperlukan */
+    margin-bottom: 5px;
 }
 
 .feature p {
+    font-family: "Poppins";
     margin-top: 0; /* Menghilangkan jarak atas deskripsi */
-    font-size: 18px; 
+    font-size: 17px; 
 }
 
 @media (max-width: 768px) {

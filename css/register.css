@@ -11,7 +11,8 @@
 }
 
 .form-title {
-    color: var(--green);
+    font-size: 1.5rem;
+    color: #115246;
 }
 
 .register-page {
@@ -21,7 +22,7 @@
 }
 
 .register-image {
-    width: 450px; /* Sesuaikan ukuran sesuai kebutuhan */
+    width: 350px; /* Sesuaikan ukuran sesuai kebutuhan */
     height: auto;
     margin-right: 120px; /* Memberi jarak antara gambar dan form */
 }

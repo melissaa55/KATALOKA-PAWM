@@ -1,4 +1,5 @@
 .words-container {
+    margin-top: 100px;
     background-color: transparent; /* Atur latar belakang menjadi transparan */
     /* Sesuaikan padding jika ingin ada jarak antara kartu dan tepi container */
     display: flex;
@@ -22,8 +23,8 @@
     z-index: 1; /* Menempatkan kartu di atas kartu lainnya saat di-hover */
 }
 
-.card-title h2{
+/* .card-title h2{
     font-family: "Poppins";
     font-weight: bold;
     font-size: 1.8rem;
-}
+} */

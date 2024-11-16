@@ -79,9 +79,10 @@
     margin-top: 10px;
 }
 
-.extra-image {
+/* .extra-image {
     position: absolute;
-    bottom: 30px;
-    width: 350px; /* Sesuaikan ukuran gambar */
-    height: auto;
-}
+    left: 70px;
+    bottom: 100px;
+    width: 200px; /* Sesuaikan ukuran gambar */
+/*    height: auto;
+/*} */

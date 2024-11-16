@@ -73,7 +73,7 @@
 }
 
 #question-box {
-    background-color: #F2E7D5;
+    background-color: #f6dcc3;
     color: #115246;
     font-family: "Poppins";
     border-radius: 5px;
@@ -323,7 +323,7 @@ button:disabled {
 }
 
 .number-box.active {
-    background-color: #e9e6af; /* Warna latar belakang saat aktif */
+    background-color: #ffeec0; /* Warna latar belakang saat aktif */
     color: rgb(11, 11, 11);
     font-weight: bold;
 }

@@ -15,18 +15,22 @@ form {
 }
 
 .form-title {
+    font-family: "Poppins";
+    font-size: 1.5rem;
     text-align: center;
     margin: 0;
-    color: var(--green);
+    color: #115246;
 }
 
 .form-field {
+    font-family: "Poppins";
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
 .form-input {
+    font-size: "Poppins";
     height: 35px;
     border-radius: 5px;
     border-color: var(--green);
@@ -34,7 +38,8 @@ form {
 }
 
 .form-button {
-    background-color: var(--green);
+    font-family: "Poppins";
+    background-color: #115246;
     border-radius: 5px;
     color: var(--beige);
     height: 40px;
@@ -55,6 +60,7 @@ form {
 }
 
 .form-footer-link:hover {
+    font-weight: bold;
     text-decoration: underline;
 }
 
