@@ -30,7 +30,7 @@
 }
 
 .form-label {
-    font-size: 20px;
+    font-size: 15px;
     margin-bottom: 5px;
     color: #543b2f;
     font-weight: bold;
@@ -46,21 +46,26 @@
 }
 
 .form-button {
+    font-family: "Poppins";
     width: 120%;
     height: 45px;
     margin-top: 30px;
-    background-color: var(--green);
+    background-color: #ffeec0;
     border-radius: 5px;
-    color: var(--beige);
+    color: #115246;
+    font-weight: bold;
     cursor: pointer;
     font-size: 16px;
 }
 
 .form-button:hover {
-    background-color: #115246c9;
+    background-color: #efda9f;
 }
 
 .logout-button {
+    font-family: "Poppins";
+    color: var(--beige);
+    font-weight: bold;
     width: 120%;
     background-color: #cd1f1f;
     margin-top: 20px;
