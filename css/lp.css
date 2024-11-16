@@ -38,7 +38,7 @@ header {
 }
 
 .buttons {
-    padding: 30px 40px;
+    padding: 20px 40px;
     display: flex;
     gap: 20px;
     flex: 0 0 auto; /* Menjaga tombol tetap di kanan */
