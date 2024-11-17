@@ -206,3 +206,20 @@ header {
     }
 }
 
+footer {
+    text-align: center;
+    background: #638666;
+    color: #fff2e2;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    padding-top: 200px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+footer p {
+    font-family: "Poppins";
+    margin: 0;
+}

@@ -39,14 +39,13 @@ body {
 
 .word-box {
     text-decoration: none;
-    border: 10px solid #123d2d;
     border-radius: 8px;
     padding: 20px;
     width: 300px;
     height: 150px;
     background-color: #ffffeb;
     transition: transform 0.2s, background-color 0.2s;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px #f3d4b7;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -59,7 +58,7 @@ body {
 }
 
 .word-image {
-    width: 80px; /* Sesuaikan ukuran gambar */
+    width: 100px; /* Sesuaikan ukuran gambar */
     height: auto; /* Menjaga proporsi gambar */
 }
 

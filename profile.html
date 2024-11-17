@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <nav>
@@ -22,24 +24,25 @@
                     <ul class="dropdown-content">
                         <li><a href="/katapedia.html">Katapedia</a></li>
                         <li><a href="/ruang-belajar.html">Ruang Belajar</a></li>
-                        <li><a href="/cerdas-bersama.html">Cerdas Bersama</a></li>
+                        <li><a href="/quiz.html">Cerdas Bersama</a></li>
                     </ul>
                 </li>
-                <li class="nav-list-item auth"><a id="login-button" class="nav-link" href="/profile.html">Profil</a></li>
+                <li class="nav-list-item auth"><a id="login-button" class="nav-link" href="/profile.html">Profil</a>
+                </li>
             </ul>
         </nav>
     </header>
 
     <!-- Gambar tambahan di luar container profil -->
 
-    <main class="profile-container">
+    <div class="profile-container">
         <div class="profile-left">
-            <img id="profile-pic" src="images/profil.png" alt="Foto Profil" class="profile-pic">
+            <img id="profile-pic" src="images/cat3.png" alt="Foto Profil" class="profile-pic">
         </div>
         <div class="profile-right">
             <form class="profile-form">
                 <div class="form-field">
-                    <label class="form-label" style="font-family: 'Poppins';">Nama</label>
+                    <label class="form-label" style="font-family: 'Poppins';">Nama Lengkap</label>
                     <input class="form-input" type="text" id="name" placeholder="Nama Pengguna">
                 </div>
                 <div class="form-field">
@@ -47,14 +50,29 @@
                     <input class="form-input" type="email" id="email" placeholder="Email Pengguna" readonly>
                 </div>
                 <div class="form-field">
-                    <label class="form-label">Password</label>
+                    <label class="form-label">Kata Sandi</label>
                     <input class="form-input" type="password" id="password" placeholder="********" required>
                 </div>
                 <button class="form-button" type="button" id="save-button">Simpan Perubahan</button>
                 <button class="form-button logout-button" type="button" id="logout-button">Keluar</button>
             </form>
         </div>
-    </main>
+        <div id="current-password-popup" class="popup hidden">
+            <div class="popup-content">
+                <img src="images/lock.png" alt="Lock Icon" class="popup-icon">
+                <h2>Konfirmasi Kata Sandi</h2>
+                <p>Silakan masukkan kata sandi Anda saat ini!</p>
+                <input type="password" id="current-password-input" placeholder="Kata Sandi Saat Ini">
+                <div class="popup-buttons">
+                    <button id="cancel-password-button" class="button-decline">Batal</button>
+                    <button id="confirm-password-button" class="button-allow">Ubah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+    </footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
@@ -99,46 +117,21 @@
             const user = auth.currentUser;
             const fullName = document.getElementById("name").value;
             const newPassword = document.getElementById("password").value;
-        
+
             if (user) {
                 try {
                     // Update full name in Firestore
                     const userRef = doc(db, "users", user.uid);
                     await updateDoc(userRef, { fullName: fullName });
                     console.log("Nama berhasil diperbarui di Firestore.");
-        
+
                     // Re-authenticate the user before updating the password
                     if (newPassword) {
-                        const currentPassword = prompt("Masukkan password saat ini:");
-        
-                        // Validate current password
-                        if (!currentPassword) {
-                            alert("Password saat ini harus diisi.");
-                            return;
-                        }
-        
-                        const credential = EmailAuthProvider.credential(user.email, currentPassword);
-        
-                        try {
-                            await reauthenticateWithCredential(user, credential);
-                            console.log("Re-autentikasi berhasil.");
-        
-                            // Update the password
-                            await updatePassword(user, newPassword);
-                            alert("Password berhasil diperbarui!");
-                        } catch (reauthError) {
-                            console.error("Gagal re-autentikasi:", reauthError);
-        
-                            // Handle specific errors
-                            if (reauthError.code === 'auth/wrong-password') {
-                                alert("Password saat ini salah. Silakan coba lagi.");
-                            } else if (reauthError.code === 'auth/too-many-requests') {
-                                alert("Terlalu banyak percobaan. Silakan coba lagi nanti.");
-                            } else {
-                                alert("Gagal re-autentikasi. Silakan coba lagi.");
-                            }
-                        }
+                        showPasswordPopup(user, newPassword);
+                    } else {
+                        console.log("TESS")
                     }
+
                 } catch (error) {
                     console.error("Error saat memperbarui profil atau password:", error);
                     alert("Gagal memperbarui profil atau password.");
@@ -147,8 +140,56 @@
                 alert("User tidak terautentikasi.");
             }
         }
-        
-        
+
+        function showPasswordPopup(user, newPassword) {
+            const popup = document.getElementById("current-password-popup");
+            popup.classList.remove("hidden");
+
+
+            // Event listener untuk tombol "Konfirmasi"
+            document.getElementById("confirm-password-button").addEventListener("click", async () => {
+                const currentPassword = document.getElementById("current-password-input").value;
+
+                if (!currentPassword) {
+                    alert("Password saat ini harus diisi.");
+                    return;
+                }
+
+                const credential = EmailAuthProvider.credential(user.email, currentPassword);
+
+                try {
+                    // Re-authenticate user
+                    await reauthenticateWithCredential(user, credential);
+                    console.log("Re-autentikasi berhasil.");
+
+                    // Update password
+                    await updatePassword(user, newPassword);
+                    alert("Password berhasil diperbarui!");
+
+                    // Sembunyikan pop-up setelah selesai
+                    popup.classList.add("hidden");
+                } catch (reauthError) {
+                    console.error("Gagal re-autentikasi:", reauthError);
+
+                    // Tangani kesalahan
+                    if (reauthError.code === 'auth/invalid-login-credentials') {
+                        alert("Password saat ini salah. Silakan coba lagi.");
+                    } else if (reauthError.code === 'auth/too-many-requests') {
+                        alert("Terlalu banyak percobaan. Silakan coba lagi nanti.");
+                    } else {
+                        alert("Gagal re-autentikasi. Silakan coba lagi.");
+                    }
+                }
+            });
+
+            // Event listener untuk tombol "Batal"
+            document.getElementById("cancel-password-button").addEventListener("click", () => {
+                popup.classList.add("hidden"); // Sembunyikan pop-up
+            });
+        }
+        document.getElementById("save-button").addEventListener("click", updateProfile);
+
+
         async function logout() {
             const confirmLogout = confirm("Apakah Anda yakin ingin keluar?");
             if (confirmLogout) {
@@ -173,4 +214,5 @@
         <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
     </footer>
 </body>
+
 </html>

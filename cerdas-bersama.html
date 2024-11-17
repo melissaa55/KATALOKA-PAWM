@@ -29,16 +29,36 @@
             </div>
             <div class="answers-box"></div> 
             <div id="navigation-buttons">
-                <button id="prev-button" onclick="prevQuestion()">Sebelumnya</button>
-                <button id="next-button" onclick="nextQuestion()">Selanjutnya</button>
+                <button id="prev-button">Sebelumnya</button>
+                <button id="next-button">Selanjutnya</button>
             </div>
             <div id="feedback"></div> 
     </div>
+    <div id="confirm-popup" class="popup hidden">
+        <div class="popup-content">
+            <h2>Konfirmasi!</h2>
+            <img src="images/topi.png" alt="Confirmation Icon" class="popup-icon">
+            <p>Apakah Anda yakin ingin menyelesaikan kuis? Jawaban tidak dapat diubah setelah ini.</p>
+            <div class="popup-buttons">
+                <button id="confirm-no" class="buttonpopup button-decline">Batal</button>
+                <button id="confirm-yes" class="buttonpopup button-allow">Selesai</button>
+            </div>
+        </div>
+    </div>
+    <div id="score-popup" class="popup hidden">
+        <div class="popup-content">
+            <img src="images/profile.png" alt="Score Icon" class="popup-icon2">
+            <h3>Skor Anda</h3>
+            <p id="score-display">Skor: 0</p>
+            <div class="popup-buttons">
+                <button id="close-score-popup" class="button button-allow2">Tutup</button>
+            </div>
+        </div>
+    </div>
+    
     <footer>
         <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
     </footer>
-    
-
     <script type="module" src="cerdasbersama.js"></script>
 </body>
 </html>

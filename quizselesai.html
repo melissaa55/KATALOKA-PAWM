@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +9,40 @@
     <link rel="stylesheet" href="css/quiz.css">
     <link rel="stylesheet" href="css/cerdasbersama.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="image-container">
             <img src="images/quiz selesai.png" alt="Your Image">
         </div>
         <div class="judulkuis">
-            <h2>Kuis Selesai!</h2>
+            <h2>Tes Selesai!</h2>
         </div>
         <div class="button-container">
-            <button class="button button-back" onclick="goBack()">Ulang</button>
-            <button class="button button-start" onclick="goNext()">Kembali</button>
+            <button id="reset-quiz-button" class="button button-back">Ulang</button>
+            <button id="next-page-button" class="button button-start">Kembali</button>
+            <button id="view-score-button" class="button button-view-score">Lihat Nilai</button>
         </div>
     </div>
-
-    <script>
-        // Function to go back to the previous page
-        function goBack() {
-            window.history.back();
-        }
-
-        // Function to go to the next page
-        function goNext() {
-            window.location.href = "home.html"; // Replace with the URL of the next page
-        }
-    </script>
+    <div id="score-popup" class="popup hidden">
+        <div class="popup-content">
+            <img src="images/profile.png" alt="Score Icon" class="popup-icon2">
+            <h3>Skor Anda</h3>
+            <p id="score-display">Skor: 0</p>
+            <div class="popup-buttons">
+                <button id="close-score-popup" class="button-allow2">Tutup</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+    </footer>
 </body>
+
+<script type="module" src="quizselesai.js"></script>
+
 </html>

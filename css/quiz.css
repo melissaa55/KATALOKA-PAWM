@@ -12,7 +12,7 @@ body {
 }
 
 .image-container img {
-    max-width: 60%;
+    max-width: 50%;
     height: auto;
 }
 
@@ -77,11 +77,28 @@ body {
     border-color: #afc8ad; /* Darker border on press */
 }
 
+.button-view-score {
+    background: linear-gradient(135deg, #FAF1E6, #E4EFE7, #E8ECD6, #AFC8AD); 
+    border: 1px solid #AFC8AD;
+    color: #115246;
+}
+
+.button-view-score:hover {
+    border-color: #cbd2a4; /* Change border color on hover to match new gradient */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+.button-view-score:active {
+    transform: translateY(2px); /* Simulates a press-down effect */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2); /* Smaller shadow on press */
+    border-color: #afc8ad; /* Darker border on press */
+}
+
 .judulkuis {
     font-size: 1rem;
     align-items: center;
     text-align: center;
     justify-content: center;
     font-family: "Poppins";
-    margin: 0;
+    margin: 10px;
 }

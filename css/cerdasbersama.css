@@ -6,7 +6,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%; /* Ensures sidebar takes the full height of the container */
+    height: 100%;
+    /* Ensures sidebar takes the full height of the container */
     margin-left: 40px;
     margin-top: 30px;
     width: 170px;
@@ -21,11 +22,11 @@
 
 #numbers-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     align-items: center;
     padding: 0 55px;
-    grid-gap: 30px; 
+    grid-gap: 30px;
     flex: 1;
 }
 
@@ -36,15 +37,15 @@
     box-shadow: 0 2px 5px #1152465d;
     cursor: pointer;
     transition: background-color 0.3s;
-    padding: 20px; 
-    width: 40px; 
-    height: 59px; 
+    padding: 20px;
+    width: 40px;
+    height: 59px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px; 
+    font-size: 18px;
     border: 2px solid #115246;
 }
 
@@ -61,6 +62,7 @@
     background-color: #11524684;
     color: white;
 }
+
 .number-box.answered:hover {
     background-color: #11524658;
 }
@@ -118,9 +120,10 @@
     align-items: center;
     border: 2px solid #115246;
 }
+
 .answer-container:hover {
     box-shadow: 0 3px 3px #11524675;
-    
+
 }
 
 .answer-label {
@@ -136,13 +139,17 @@
 }
 
 .correct-answer {
-    background-color: #115b2622; /* light green */
-    color: #155724; /* dark green */
+    background-color: #115b2622;
+    /* light green */
+    color: #155724;
+    /* dark green */
 }
 
 .incorrect-answer {
-    background-color: #f8d7da; /* light red */
-    color: #721c24; /* dark red */
+    background-color: #f8d7da;
+    /* light red */
+    color: #721c24;
+    /* dark red */
 }
 
 
@@ -221,29 +228,34 @@ button:disabled {
 
 .feature-content {
     display: flex;
-    flex-direction: column; /* Centers the content vertically */
+    flex-direction: column;
+    /* Centers the content vertically */
     align-items: center;
     justify-content: center;
 }
 
 .feature-image2 {
-    width: 80px; /* Sesuaikan ukuran gambar sesuai kebutuhan */
+    width: 80px;
+    /* Sesuaikan ukuran gambar sesuai kebutuhan */
     height: auto;
     display: flex;
-    
+
 }
 
 #progress-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the entire progress bar and percentage */
+    justify-content: center;
+    /* Center the entire progress bar and percentage */
     width: 100%;
     margin-bottom: 10px;
-    margin-top: 30px; /* Control the top spacing for the entire wrapper */
+    margin-top: 30px;
+    /* Control the top spacing for the entire wrapper */
 }
 
 #progress-bar-container {
-    width: 90%; /* Adjust this width as needed */
+    width: 90%;
+    /* Adjust this width as needed */
     background-color: #ddd;
     height: 10px;
     border-radius: 5px;
@@ -254,26 +266,34 @@ button:disabled {
 #progress-bar {
     width: 0%;
     height: 100%;
-    background-color: #115246; /* Adjust color as needed */
+    background-color: #115246;
+    /* Adjust color as needed */
     border-radius: 5px;
     transition: width 0.3s ease;
 }
 
 #progress-percentage {
     font-family: "Poppins";
-    margin-left: 10px; /* Small gap between the bar and percentage */
+    margin-left: 10px;
+    /* Small gap between the bar and percentage */
     font-weight: bold;
-    color: #115246; /* Match the color of the progress bar */
-    align-self: center; /* Vertically align with the progress bar */
+    color: #115246;
+    /* Match the color of the progress bar */
+    align-self: center;
+    /* Vertically align with the progress bar */
 }
 
 #navigation-buttons {
     display: flex;
-    justify-content: space-between; /* Space out the buttons */ /* Add space above the buttons */
+    justify-content: space-between;
+    /* Space out the buttons */
+    /* Add space above the buttons */
 }
 
 #prev-button {
-    background-color: #115246; /* Button color */
+    font-family: "Poppins";
+    background-color: #115246;
+    /* Button color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -281,14 +301,19 @@ button:disabled {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    max-width: 150px; /* Sets a max width for the button */
-    flex: 1; /* Makes the button expand equally with Next button */
-    margin: 20px; /* Space to the right of the Previous button */
+    max-width: 150px;
+    /* Sets a max width for the button */
+    flex: 1;
+    /* Makes the button expand equally with Next button */
+    margin: 20px;
+    /* Space to the right of the Previous button */
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
 #next-button {
-    background-color: #115246; /* Button color */
+    font-family: "Poppins";
+    background-color: #115246;
+    /* Button color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -296,21 +321,26 @@ button:disabled {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    max-width: 150px; /* Sets a max width for the button */
-    flex: 1; /* Makes the button expand equally with Previous button */
-    margin:20px;  /* Space to the left of the Next button */
+    max-width: 150px;
+    /* Sets a max width for the button */
+    flex: 1;
+    /* Makes the button expand equally with Previous button */
+    margin: 20px;
+    /* Space to the left of the Next button */
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
 
 #prev-button:hover,
 #next-button:hover {
-    background-color: #0d3e34; /* Darker color on hover */
+    background-color: #0d3e34;
+    /* Darker color on hover */
 }
 
 #prev-button:disabled,
 #next-button:disabled {
-    background-color: #ccc; /* Disabled color */
+    background-color: #ccc;
+    /* Disabled color */
     cursor: not-allowed;
 }
 
@@ -318,13 +348,179 @@ button:disabled {
 .answer-label {
     display: flex;
     align-items: center;
-    width: 100%; /* Make the label take up the full width of the container */
-    cursor: pointer; /* Shows pointer to indicate clickable area */
+    width: 100%;
+    /* Make the label take up the full width of the container */
+    cursor: pointer;
+    /* Shows pointer to indicate clickable area */
 }
 
 .number-box.active {
-    background-color: #ffeec0; /* Warna latar belakang saat aktif */
+    background-color: #ffeec0;
+    /* Warna latar belakang saat aktif */
     color: rgb(11, 11, 11);
     font-weight: bold;
 }
 
+/* Gaya untuk pop-up */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Latar belakang transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Pop-up content box */
+.popup-content {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 16px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Icon */
+.popup-icon {
+    width: 180px;
+    height: 120px;
+    position: absolute;
+    /* Posisi absolut agar bisa keluar dari kotak */
+    top: -70px;
+    /* Keluar ke atas kotak */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Pusatkan secara horizontal */
+    padding: 5px;
+    /* Spasi antara gambar dan latar belakang lingkaran */
+}
+
+/* Title */
+/* Konten pop-up */
+.popup-content {
+    background: #ffffff;
+    padding: 40px 30px 20px;
+    /* Tambahkan ruang di bagian atas untuk gambar */
+    border-radius: 16px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+    /* Agar gambar bisa diposisikan relatif terhadap kotak ini */
+}
+
+
+/* Text */
+.popup-content p {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Buttons container */
+.popup-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.buttonpopup {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    border: none;
+}
+
+/* Decline button */
+.button-decline {
+    background: #cd1f1f;
+    color: white;
+    flex: 1;
+}
+
+/* Allow button */
+.button-allow {
+    background: #115246;
+    color: white;
+    flex: 1;
+}
+
+/* Hover effects */
+.button-decline:hover {
+    background-color: #cd1f1f82;
+}
+
+/* Hide pop-up by default */
+.hidden {
+    display: none;
+}
+
+h2 {
+    font-family: "Poppins";
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.popup-icon2 {
+    width: 130px;
+    height: 120px;
+    position: absolute;
+    /* Posisi absolut agar bisa keluar dari kotak */
+    top: -60px;
+    /* Keluar ke atas kotak */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Pusatkan secara horizontal */
+    padding: 5px;
+    /* Spasi antara gambar dan latar belakang lingkaran */
+}
+
+.button-allow2 {
+    border-radius: 10px;
+    height: 45px;
+    background: #115246;
+    color: white;
+    flex: 1;
+    padding: 10px 10px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    border: none;
+}
+
+h3 {
+    color: #543b2f;
+    font-family: "Poppins";
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#score-display {
+    font-size: 20px;
+    color: #555;
+    margin: 0 0 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
