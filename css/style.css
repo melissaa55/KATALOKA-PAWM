@@ -235,6 +235,18 @@ footer p {
     .nav-list {
         gap: 8px; 
     }
+
+    .dropdown-content {
+        width: 100px; 
+        padding: 6px; 
+    }
+
+    .dropdown-content a {
+        font-size: 11px; 
+        padding: 4px 0;
+    }
+
+
 }
 
 @media (max-width: 480px) {
@@ -258,6 +270,16 @@ footer p {
     .nav-list {
         gap: 6px; 
     }
+
+    .dropdown-content {
+        width: 70px; 
+        padding: 5px; 
+    }
+
+    .dropdown-content a {
+        font-size: 10px; 
+    }
+
 }
 
 @media (max-width: 375px) {
@@ -281,4 +303,16 @@ footer p {
     .nav-list {
         gap: 4px;
     }
+
+    .dropdown-content {
+        width:60px;
+        padding: 4px; 
+    }
+
+    .dropdown-content a {
+        font-size: 9px; 
+        padding: 2px 0;
+    }
+    
+
 }

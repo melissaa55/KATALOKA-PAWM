@@ -296,6 +296,7 @@ function updateNumberBox() {
     const numberBoxes = document.getElementsByClassName("number-box");
     for (let i = 0; i < answers.length; i++) {
         const e = answers[i];
+        console.log("ELEMENT", e, i)
         if (e == '') {
             if (numberBoxes[i].classList.contains("answered")) {
                 numberBoxes[i].classList.remove("answered");
