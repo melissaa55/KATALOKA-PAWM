@@ -16,18 +16,15 @@ function displayWords() {
         wordLink.classList.add('word-box'); 
         wordLink.href = `link-yt-katapedia.html?word=${item.word}`;
         
-        // Create image element
         const img = document.createElement('img');
         img.src = item.imgSrc;
         img.alt = item.word;
-        img.classList.add('word-image'); // Add a class for styling the image
-        
-        // Create text element
+        img.classList.add('word-image');
+
         const wordText = document.createElement('span');
         wordText.textContent = item.word;
-        wordText.classList.add('word-title'); // Add a class for styling the text
-        
-        // Append image and text to the box
+        wordText.classList.add('word-title'); 
+
         wordLink.appendChild(img);
         wordLink.appendChild(wordText);
         

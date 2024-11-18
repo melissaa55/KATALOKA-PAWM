@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebas
 import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
-// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
     authDomain: "kataloka-995bd.firebaseapp.com",
@@ -13,7 +12,6 @@ const firebaseConfig = {
     measurementId: "G-0X8CY7D8EM"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -29,21 +27,18 @@ async function resetQuiz() {
     const progressRef = doc(db, "users", userId, "quizProgress", "progress");
 
     try {
-        // Hapus atau reset data dari Firestore
         await setDoc(progressRef, {
             currentQuestionIndex: 0,
-            answers: new Array(10).fill(""), // Kosongkan semua jawaban
-            progress: "0%" // Reset progres ke 0%
+            answers: new Array(10).fill(""), 
+            progress: "0%" 
         });
 
-        // Reset variabel lokal
         currentQuestionIndex = 0;
         answers = new Array(10).fill("");
 
-        // Reset UI
-        displayNumbers(); // Tampilkan nomor soal kosong
-        displayQuestion(0); // Mulai dari pertanyaan pertama
-        updateProgressBar(); // Reset progress bar
+        displayNumbers(); 
+        displayQuestion(0);
+        updateProgressBar(); 
 
         console.log("Quiz has been reset.");
     } catch (error) {
@@ -53,7 +48,7 @@ async function resetQuiz() {
 
 function hideScorePopup() {
     const popup = document.getElementById("score-popup");
-    popup.classList.add("hidden"); // Sembunyikan pop-up
+    popup.classList.add("hidden"); 
 }
 
 async function calculateFinalScore() {
@@ -90,10 +85,8 @@ function showScorePopup(score) {
     const popup = document.getElementById("score-popup");
     const scoreDisplay = document.getElementById("score-display");
 
-    // Set skor di elemen pop-up
     scoreDisplay.textContent = score;
 
-    // Tampilkan pop-up
     popup.classList.remove("hidden");
 }
 
@@ -106,11 +99,11 @@ document.getElementById("reset-quiz-button").addEventListener("click", async () 
     await resetQuiz();
     window.location.href = "cerdas-bersama.html";
 });
-// Event listener untuk tombol "Lihat Nilai"
+
 document.getElementById("view-score-button").addEventListener("click", async () => {
-    hideScorePopup(); // Sembunyikan pop-up
-    const finalScore = await calculateFinalScore(); // Hitung skor akhir
-    showScorePopup(finalScore); // Tampilkan pop-up skor
+    hideScorePopup();
+    const finalScore = await calculateFinalScore(); 
+    showScorePopup(finalScore); 
 });
 document.getElementById("close-score-popup").addEventListener("click", () => {
     console.log("HELLO")

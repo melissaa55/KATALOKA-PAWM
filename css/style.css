@@ -16,7 +16,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--beige);
-    /* min-height: 100vh; */
 }
 
 header {
@@ -26,9 +25,6 @@ header {
     align-items: center;
     justify-content: center;
     padding: 0 20px;
-    /* position: fixed;
-    width: 100vw;
-    z-index: auto; */
     
 }
 
@@ -157,7 +153,6 @@ h2 {
     font-family: 'Poppins';
     font-weight: 1500;
     font-size: 1.7rem;
-    /* margin-top: 120px; */
 }
 
 #about p {
@@ -192,7 +187,6 @@ h2 {
     box-shadow: 0 5px 15px #11524675;
 }
 
-
 footer {
     text-align: center;
     background: var(--green);
@@ -209,67 +203,82 @@ footer p {
 
 .feature h3 {
     font-family: "Poppins";
-    /* Menghindari tabrakan dengan gambar */
-    font-size: 20px; /* Sesuaikan ukuran teks sesuai kebutuhan */
-    font-weight: bold; /* Tambahkan untuk mempertebal teks jika diperlukan */
+    font-size: 20px;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
 .feature p {
     font-family: "Poppins";
-    margin-top: 0; /* Menghilangkan jarak atas deskripsi */
+    margin-top: 0; 
     font-size: 17px; 
 }
 
 @media (max-width: 768px) {
     header {
-        width: 195%;
+        padding: 8px; 
     }
 
-    .nav-list {
-        gap: 10px;
-        align-items: center;
-    }
-
-    nav h1 {
-        font-size: 2rem; 
-    }
-
-    .nav-link {
-        font-size: 0.9rem; 
-    }
-
-    main {
-        padding: 20px; 
-    }
-
-    h2 {
-        font-size: 1.4rem;
-    }
-
-    p {
-        font-size: 0.9rem; 
-    }
-
-    footer {
-        padding: 5px 0;
-    }
-}
-
-@media (max-width: 480px) {
     nav h1 {
         font-size: 1rem; 
     }
 
+    .nav-left img {
+        height: 40px;
+    }
+
     .nav-link {
-        font-size: 0.8rem;
+        font-size: 0.7rem; 
+        padding: 3px 5px; 
     }
 
-    h2 {
-        font-size: 1.2rem;
+    .nav-list {
+        gap: 8px; 
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 5px;
     }
 
-    p {
-        font-size: 0.8rem;
+    nav h1 {
+        font-size: 0.8rem; 
+    }
+
+    .nav-left img {
+        height: 35px; 
+    }
+
+    .nav-link {
+        font-size: 0.6rem; 
+        padding: 2px 4px;
+    }
+
+    .nav-list {
+        gap: 6px; 
+    }
+}
+
+@media (max-width: 375px) {
+    header {
+        padding: 3px;
+    }
+
+    nav h1 {
+        font-size: 0.6rem; 
+    }
+
+    .nav-left img {
+        height: 30px;
+    }
+
+    .nav-link {
+        font-size: 0.5rem; 
+        padding: 1px 3px;
+    }
+
+    .nav-list {
+        gap: 4px;
     }
 }

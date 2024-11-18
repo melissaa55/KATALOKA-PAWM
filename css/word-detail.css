@@ -1,6 +1,3 @@
-/* word-detail.css */
-
-/* Style for the meaning box */
 .meaning-box {
     border-radius: 10px;
     padding: 20px;
@@ -10,14 +7,12 @@
     text-align: center;
 }
 
-/* Style for the word title within the box */
 #word-title {
     font-size: 2rem;
     color: #333;
     text-align: center;
 }
 
-/* Style for part of speech and pronunciation */
 .part-of-speech {
     color: #333;
     font-size: 1.2rem;
@@ -28,7 +23,6 @@
     color: #333;
 }
 
-/* Style for the "What It Means" heading */
 .meaning-title {
     font-weight: bold;
     margin-top: 20px;
@@ -36,14 +30,12 @@
     color: #333;
 }
 
-/* Style for the word definition */
 .word-definition {
     font-size: 1rem;
     color: #333;
     margin-top: 10px;
 }
 
-/* Style for the "Did You Know?" heading */
 .did-you-know-title {
     font-weight: bold;
     margin-top: 20px;
@@ -51,7 +43,6 @@
     color: #333;
 }
 
-/* Style for the Did You Know content */
 .did-you-know {
     font-size: 1rem;
     color: #666;
@@ -59,3 +50,80 @@
     text-align: left;
 }
 
+@media (max-width: 768px) {
+    .meaning-box {
+        width: 90%;
+        padding: 15px; 
+    }
+
+    #word-title {
+        font-size: 1.8rem; 
+    }
+
+    .part-of-speech,
+    .pronunciation {
+        font-size: 1rem; 
+    }
+
+    .meaning-title,
+    .did-you-know-title {
+        font-size: 1.1rem; 
+    }
+
+    .word-definition,
+    .did-you-know {
+        font-size: 0.9rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .meaning-box {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    #word-title {
+        font-size: 1.4rem;
+    }
+
+    .part-of-speech,
+    .pronunciation {
+        font-size: 0.9rem;
+    }
+
+    .meaning-title,
+    .did-you-know-title {
+        font-size: 0.9rem;
+    }
+
+    .word-definition,
+    .did-you-know {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .meaning-box {
+        width: 90%;
+        max-width: 320px;
+    }
+
+    #word-title {
+        font-size: 1.2rem;
+    }
+
+    .part-of-speech,
+    .pronunciation {
+        font-size: 0.8rem;
+    }
+
+    .meaning-title,
+    .did-you-know-title {
+        font-size: 0.85rem;
+    }
+
+    .word-definition,
+    .did-you-know {
+        font-size: 0.8rem;
+    }
+}

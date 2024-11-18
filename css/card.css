@@ -1,9 +1,8 @@
 .words-container {
     margin-top: 100px;
-    background-color: transparent; /* Atur latar belakang menjadi transparan */
-    /* Sesuaikan padding jika ingin ada jarak antara kartu dan tepi container */
+    background-color: transparent; 
     display: flex;
-    justify-content: center; /* Memposisikan kartu di tengah */
+    justify-content: center;
     align-items: center;
 }
 .card-image {
@@ -14,17 +13,101 @@
     height: auto;
     margin: -20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Menambahkan pointer saat hover */
+    cursor: pointer; 
 }
 
 .card-image:hover {
-    transform: translateY(-50px); /* Membuat kartu naik */
-    /* Efek bayangan untuk ilusi kedalaman */
-    z-index: 1; /* Menempatkan kartu di atas kartu lainnya saat di-hover */
+    transform: translateY(-50px); 
+    z-index: 1; 
 }
 
-/* .card-title h2{
-    font-family: "Poppins";
-    font-weight: bold;
-    font-size: 1.8rem;
-} */
+@media (max-width: 1280px) {
+
+    .card-image {
+        width: 230px; 
+    }
+}
+
+@media (max-width: 1024px) {
+    .words-container {
+        margin-top: 50px; 
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+        padding: 0 300px; 
+        row-gap: 50px; 
+        column-gap: 0px; 
+        padding-top: 0;
+    }
+
+    .card-image {
+        width: 250px; 
+    }
+}
+
+@media (max-width: 768px) {
+    .words-container {
+        margin-top: 50px; 
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px; 
+        padding: 0 300px; 
+        row-gap: 50px; 
+        column-gap: 8px; 
+        padding-top: 0;
+    }
+
+    .card-image {
+        width: 210px; 
+    }
+}
+
+@media (max-width: 540px) {
+    .words-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+        row-gap: 50px;
+        column-gap: 10px; 
+        padding: 0 140px; 
+        padding-top: 0;
+    }
+
+    .card-image {
+        width: 180px;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .words-container {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px; 
+        padding: 0 120px; 
+        row-gap: 50px; 
+        column-gap: 15px; 
+        padding-top: 0;
+
+    }
+
+    .card-image {
+        width: 150px; 
+    }
+}
+
+@media (max-width: 375px) {
+    .words-container {
+        display: grid; 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 8px; 
+        padding: 0 90px; 
+        row-gap: 50px; 
+        column-gap: 10px; 
+        padding-top: 0;
+    }
+
+    .card-image {
+        width: 120px; 
+    }
+}

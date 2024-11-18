@@ -4,7 +4,7 @@
     align-items: center;
     margin: 50px auto;
     width: 800px;
-    background: linear-gradient(135deg, #FAF1E6, #E4EFE7, #E8ECD6, #FFFBEB); /* Gradien dari hijau muda ke hijau tua */
+    background: linear-gradient(135deg, #FAF1E6, #E4EFE7, #E8ECD6, #FFFBEB); 
     box-shadow: 0 1px 10px 1px #52706b98;
     border-radius: 8px;
     overflow: hidden;
@@ -85,20 +85,11 @@
 .button-container {
     display: flex;
     width: 100%;
-    justify-content: space-between; /* Memisahkan tombol ke kanan dan kiri */
-    gap: 10px; /* Menambahkan jarak antara tombol */
+    justify-content: space-between; 
+    gap: 10px; 
     margin-top: 10px;
 }
 
-/* .extra-image {
-    position: absolute;
-    left: 70px;
-    bottom: 100px;
-    width: 200px; /* Sesuaikan ukuran gambar */
-/*    height: auto;
-/*} */
-
-/* Pop-Up Styling */
 .popup {
     position: fixed;
     top: 0;
@@ -132,14 +123,14 @@
 .popup-icon {
     width: 80px;
     height: 80px;
-    position: absolute; /* Posisi absolut agar bisa keluar dari kotak */
-    top: -40px; /* Keluar ke atas kotak */
+    position: absolute;
+    top: -40px; 
     left: 50%;
-    transform: translateX(-50%); /* Pusatkan secara horizontal */
-    background: #ffffff; /* Latar belakang putih untuk membuat lingkaran */
-    border-radius: 50%; /* Membuat gambar berbentuk lingkaran */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
-    padding: 5px; /* Spasi antara gambar dan latar belakang lingkaran */
+    transform: translateX(-50%);
+    background: #ffffff; 
+    border-radius: 50%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 5px; 
     
 }
 
@@ -199,7 +190,6 @@
     border: none;
 }
 
-/* Hover effects */
 .button-decline:hover {
     background-color: #cd1f1f82;
 }
@@ -217,5 +207,204 @@
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media (max-width: 1024px) {
+    .profile-container {
+        flex-direction: column;
+        max-width: 800px;
+        padding: 20px;
+    }
+
+    .profile-left {
+        flex: 0 0 180px;
+    }
+
+    .profile-pic {
+        width: 180px;
+    }
+
+    .profile-right {
+        padding: 20px;
+    }
+
+    .form-input,
+    .form-button,
+    .logout-button {
+        height: 300px;
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .popup-content {
+        max-width: 400px;
+        height: auto;
+        padding: 10px;
+    }
+
+    .popup-icon {
+        width: 90px;
+        height: 90px;
+        top: -55px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .profile-left {
+        flex: 0 0 180px;
+    }
+
+    .profile-pic {
+        width: 180px;
+    }
+
+    .profile-right {
+        padding: 20px;
+    }
+
+    .form-input,
+    .form-button,
+    .logout-button {
+        height: 350px;
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .popup-content {
+        max-width: 400px;
+        height: auto;
+        padding: 10px;
+    }
+
+    .popup-icon {
+        width: 90px;
+        height: 90px;
+        top: -55px;
+    }
+}
+
+@media (max-width: 540px) {
+    .profile-container {
+        flex-direction: column;
+        width: 500px;
+        padding: 20px;
+    }
+
+    .profile-left {
+        flex: 0 0 180px;
+    }
+
+    .profile-pic {
+        width: 180px;
+    }
+
+    .profile-right {
+        padding: 20px;
+    }
+
+    .form-input,
+    .form-button,
+    .logout-button {
+        height: 350px;
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .popup-content {
+        max-width: 400px;
+        height: auto;
+        padding: 10px;
+    }
+
+    .popup-icon {
+        width: 90px;
+        height: 90px;
+        top: -55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        flex-direction: column;
+        width: 90%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .profile-left {
+        flex: 0 0 150px;
+    }
+
+    .profile-pic {
+        width: 150px;
+    }
+
+    .profile-right {
+        padding: 10px;
+    }
+
+    .form-input,
+    .logout-button {
+        width: 350px;
+        height: 30px;
+        font-size: 15px;
+    }
+    .form-button {
+        width: 350px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .popup-content {
+        max-width: 300px;
+        padding: 10px;
+    }
+
+    .popup-icon {
+        width: 80px;
+        height: 80px;
+        top: -45px;
+    }
+}
+
+@media (max-width: 375px) {
+    .profile-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .profile-pic {
+        width: 120px;
+    }
+
+    .form-input,
+    .logout-button {
+        width: 300px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .form-button {
+        width: 300px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    .popup-content {
+        max-width: 300px;
+        padding: 8px;
+    }
+
+    .popup-icon {
+        width: 40px;
+        height: 40px;
+        top: -20px;
     }
 }

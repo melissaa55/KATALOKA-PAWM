@@ -35,17 +35,13 @@
     <div id="links-container" class="links-container"></div>
 
     <footer>
-        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+        <p>&copy; 2024 Kataloka dibuat oleh Melissa Trenggono. Semua hak dilindungi.</p>
     </footer>
-
-        <!-- Firebase App (the core Firebase SDK) -->
     <script type="module">
-            // Import necessary Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
-        
-            // Firebase configuration
+
         const firebaseConfig = {
             apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
             authDomain: "kataloka-995bd.firebaseapp.com",
@@ -55,8 +51,7 @@
             appId: "1:989935904462:web:1f7d64db97686afd7cd29f",
             measurementId: "G-0X8CY7D8EM"
         };
-        
-            // Initialize Firebase
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
@@ -66,25 +61,20 @@
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     console.log("User signed in:", user.uid);
-            
-                    // Pastikan dokumen pengguna ada di Firestore
+
                     const userRef = doc(db, 'users', user.uid);
                     const userDoc = await getDoc(userRef);
             
                     if (!userDoc.exists()) {
-                        // Inisialisasi dokumen pengguna jika belum ada
                         await setDoc(userRef, { watchedVideos: [] });
                     }
-            
-                    // Setelah validasi, muat data video
                     displayLinks();
                     loadWatchedVideos(user);
                 } else {
                     console.error("User is not signed in.");
-                    window.location.href = "login.html"; // Redirect ke halaman login
+                    window.location.href = "login.html"; 
                 }
             });
-                        // Select all buttons with the 'watched-button' class
                 const markWatched = document.querySelectorAll(".watched-button");
             
                 markWatched.forEach(button => {
@@ -141,19 +131,15 @@
 
         async function loadWatchedVideos(user) {
             try {
-                // Reference the 'watchedStatus' sub-collection
                 const watchedStatusRef = collection(db, 'users', user.uid, 'watchedStatus');
-                
-                // Fetch all documents in the 'watchedStatus' sub-collection
+            
                 const watchedDocs = await getDocs(watchedStatusRef);
-                
-                // Process each document
+
                 watchedDocs.forEach(doc => {
-                    const videoId = doc.id; // The document ID is the video ID
-                    const data = doc.data(); // Contains any additional fields if stored
+                    const videoId = doc.id; 
+                    const data = doc.data(); 
                     console.log(`Video ID: ${videoId}, Data:`, data);
-        
-                    // Update the button status if it exists
+
                     const watchedButton = document.querySelector(`[video="${videoId}"]`);
                     if (watchedButton) {
                         watchedButton.classList.add('watched');
@@ -164,16 +150,12 @@
                 console.error("Error fetching watched videos:", error);
             }
         }
-        
-
-        
 
         async function markAsWatched(videoId) {
             const user = auth.currentUser;
             if (user) {
                 const userId = user.uid;
                 try {
-                    // Simpan status "watched" di Firestore
                     await setDoc(doc(db, "users", userId, "watchedStatus", videoId), {
                     });
                 } catch (error) {
@@ -193,7 +175,6 @@
             const videoIds = wordLinksMap[word];
         
             if (videoIds && videoIds.length > 0) {
-                // Use a for...of loop to allow await within the loop
                 for (const videoId of videoIds) {
                     const videoBox = document.createElement('div');
                     videoBox.classList.add('video-box');
@@ -209,8 +190,7 @@
                     watchedButton.textContent = "Telah Ditonton";
                     watchedButton.classList.add('watched-button');
                     watchedButton.setAttribute('video', videoId);
-        
-                    // Use await loadWatchedStatus to check if video is watched
+
                     if (await loadWatchedStatus(videoId)) {
                         watchedButton.classList.add('watched');
                         watchedButton.textContent = "Ditonton";
@@ -226,11 +206,7 @@
                 container.textContent = "Tidak ada video ditemukan.";
             }
         }
-
-
         window.onload = displayLinks;
-
     </script>
-    
 </body>
 </html>

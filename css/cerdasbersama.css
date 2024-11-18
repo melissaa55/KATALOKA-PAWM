@@ -7,7 +7,6 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    /* Ensures sidebar takes the full height of the container */
     margin-left: 40px;
     margin-top: 30px;
     width: 170px;
@@ -140,42 +139,13 @@
 
 .correct-answer {
     background-color: #115b2622;
-    /* light green */
     color: #155724;
-    /* dark green */
 }
 
 .incorrect-answer {
     background-color: #f8d7da;
-    /* light red */
     color: #721c24;
-    /* dark red */
 }
-
-
-/* #navigation-buttons {
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    justify-content: center;
-    margin-top: 0;
-    margin: 0;
-} */
-
-/* button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 3px 5px #1152465d;
-    width: 100px;
-    height: 40px;
-    background-color: #11524650;
-    border-radius: 5px;
-    margin: 0 30px;
-    border: 1px solid #1152465d;
-    font-family:'Courier New', Courier, monospace;
-    font-weight: bold;
-} */
 
 button:hover {
     background-color: #11524692;
@@ -197,25 +167,6 @@ button:disabled {
     flex-grow: 1;
 }
 
-/* #back-button {
-    font-family: "Poppins";
-    background-color: #7a1212;
-    color: white;
-    border: none;
-    font-size: 13px;
-    border-radius: 3px;
-    transition: background-color 0.3s;
-    width: 70px;
-    height: 30px;
-    margin-top: 15px; 
-    align-self: center; 
-} */
-
-
-/* #back-button:hover {
-    background-color: #442f26;
-} */
-
 .feature {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -229,14 +180,12 @@ button:disabled {
 .feature-content {
     display: flex;
     flex-direction: column;
-    /* Centers the content vertically */
     align-items: center;
     justify-content: center;
 }
 
 .feature-image2 {
     width: 80px;
-    /* Sesuaikan ukuran gambar sesuai kebutuhan */
     height: auto;
     display: flex;
 
@@ -246,16 +195,13 @@ button:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Center the entire progress bar and percentage */
     width: 100%;
     margin-bottom: 10px;
     margin-top: 30px;
-    /* Control the top spacing for the entire wrapper */
 }
 
 #progress-bar-container {
     width: 90%;
-    /* Adjust this width as needed */
     background-color: #ddd;
     height: 10px;
     border-radius: 5px;
@@ -267,7 +213,6 @@ button:disabled {
     width: 0%;
     height: 100%;
     background-color: #115246;
-    /* Adjust color as needed */
     border-radius: 5px;
     transition: width 0.3s ease;
 }
@@ -275,25 +220,19 @@ button:disabled {
 #progress-percentage {
     font-family: "Poppins";
     margin-left: 10px;
-    /* Small gap between the bar and percentage */
     font-weight: bold;
     color: #115246;
-    /* Match the color of the progress bar */
     align-self: center;
-    /* Vertically align with the progress bar */
 }
 
 #navigation-buttons {
     display: flex;
     justify-content: space-between;
-    /* Space out the buttons */
-    /* Add space above the buttons */
 }
 
 #prev-button {
     font-family: "Poppins";
     background-color: #115246;
-    /* Button color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -302,18 +241,14 @@ button:disabled {
     cursor: pointer;
     transition: background-color 0.3s;
     max-width: 150px;
-    /* Sets a max width for the button */
     flex: 1;
-    /* Makes the button expand equally with Next button */
     margin: 20px;
-    /* Space to the right of the Previous button */
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
 #next-button {
     font-family: "Poppins";
     background-color: #115246;
-    /* Button color */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -322,11 +257,8 @@ button:disabled {
     cursor: pointer;
     transition: background-color 0.3s;
     max-width: 150px;
-    /* Sets a max width for the button */
     flex: 1;
-    /* Makes the button expand equally with Previous button */
     margin: 20px;
-    /* Space to the left of the Next button */
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
 }
 
@@ -334,13 +266,11 @@ button:disabled {
 #prev-button:hover,
 #next-button:hover {
     background-color: #0d3e34;
-    /* Darker color on hover */
 }
 
 #prev-button:disabled,
 #next-button:disabled {
     background-color: #ccc;
-    /* Disabled color */
     cursor: not-allowed;
 }
 
@@ -349,19 +279,14 @@ button:disabled {
     display: flex;
     align-items: center;
     width: 100%;
-    /* Make the label take up the full width of the container */
     cursor: pointer;
-    /* Shows pointer to indicate clickable area */
 }
 
 .number-box.active {
     background-color: #ffeec0;
-    /* Warna latar belakang saat aktif */
     color: rgb(11, 11, 11);
     font-weight: bold;
 }
-
-/* Gaya untuk pop-up */
 .popup {
     position: fixed;
     top: 0;
@@ -369,14 +294,12 @@ button:disabled {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    /* Latar belakang transparan */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
-/* Pop-up content box */
 .popup-content {
     background: #fff;
     padding: 20px 30px;
@@ -387,37 +310,26 @@ button:disabled {
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Icon */
 .popup-icon {
     width: 180px;
     height: 120px;
     position: absolute;
-    /* Posisi absolut agar bisa keluar dari kotak */
     top: -70px;
-    /* Keluar ke atas kotak */
     left: 50%;
     transform: translateX(-50%);
-    /* Pusatkan secara horizontal */
     padding: 5px;
-    /* Spasi antara gambar dan latar belakang lingkaran */
 }
 
-/* Title */
-/* Konten pop-up */
 .popup-content {
     background: #ffffff;
     padding: 40px 30px 20px;
-    /* Tambahkan ruang di bagian atas untuk gambar */
     border-radius: 16px;
     text-align: center;
     width: 400px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     position: relative;
-    /* Agar gambar bisa diposisikan relatif terhadap kotak ini */
 }
 
-
-/* Text */
 .popup-content p {
     font-size: 14px;
     color: #555;
@@ -425,7 +337,6 @@ button:disabled {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Buttons container */
 .popup-buttons {
     display: flex;
     justify-content: space-between;
@@ -441,26 +352,22 @@ button:disabled {
     border: none;
 }
 
-/* Decline button */
 .button-decline {
     background: #cd1f1f;
     color: white;
     flex: 1;
 }
 
-/* Allow button */
 .button-allow {
     background: #115246;
     color: white;
     flex: 1;
 }
 
-/* Hover effects */
 .button-decline:hover {
     background-color: #cd1f1f82;
 }
 
-/* Hide pop-up by default */
 .hidden {
     display: none;
 }
@@ -475,14 +382,10 @@ h2 {
     width: 130px;
     height: 120px;
     position: absolute;
-    /* Posisi absolut agar bisa keluar dari kotak */
     top: -60px;
-    /* Keluar ke atas kotak */
     left: 50%;
     transform: translateX(-50%);
-    /* Pusatkan secara horizontal */
     padding: 5px;
-    /* Spasi antara gambar dan latar belakang lingkaran */
 }
 
 .button-allow2 {
@@ -512,7 +415,6 @@ h3 {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -524,3 +426,94 @@ h3 {
         transform: scale(1);
     }
 }
+
+@media (max-width: 768px) {
+    .popup-content {
+        width: 350px; 
+        max-width: 85%; 
+        padding: 20px;
+    }
+    .popup-icon {
+        width: 100px; 
+        top: -60px; 
+    }
+
+    .popup-content h2 {
+        font-size: 1.8rem; 
+    }
+
+    .popup-content p {
+        font-size: 14px; 
+    }
+}
+@media (max-width: 480px) {
+    #progress-bar-container {
+        width: 70%;
+    }
+
+    #progress-bar {
+        height: 10px; 
+    }
+
+    #progress-percentage {
+        font-size: 14px; 
+        margin-left: 5px; 
+    }
+
+    .popup-content {
+        width: 300px; 
+        max-width: 80%; 
+        padding: 15px; 
+    }
+    .popup-icon {
+        width: 80px; 
+        top: -35px; 
+    }
+
+    .popup-content h2 {
+        font-size: 1.6rem; 
+    }
+
+    .popup-content p {
+        font-size: 12px; 
+    }
+}
+
+
+@media (max-width: 375px) {
+    #progress-bar-container {
+        width: 70%; 
+    }
+
+    #progress-bar {
+        height: 10px;
+    }
+
+    #progress-percentage {
+        font-size: 14px; 
+        margin-left: 5px; 
+    }
+
+    .popup-content {
+        width: 280px; 
+        max-width: 75%; 
+        padding: 10px; 
+    }
+
+    .popup-icon {
+        width: 70px; 
+        top: -30px; 
+    }
+
+    .popup-content h2 {
+        font-size: 1.4rem; 
+    }
+
+    .popup-content p {
+        font-size: 11px; 
+    }
+
+}
+
+
+

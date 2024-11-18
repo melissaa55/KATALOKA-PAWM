@@ -2,13 +2,10 @@
 <html lang="id">
 
 <head>
-    <!-- Firebase SDKs -->
     <script type="module">
-        // Import Firebase functions
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
             authDomain: "kataloka-995bd.firebaseapp.com",
@@ -19,11 +16,9 @@
             measurementId: "G-0X8CY7D8EM"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Tambahkan event listener setelah halaman dimuat
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.login-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -32,7 +27,6 @@
                 const password = document.querySelector('#password').value;
 
                 try {
-                    // Buat pengguna dengan email dan kata sandi
                     await signInWithEmailAndPassword(auth, email, password);
                     alert('Login berhasil!');
                     window.location.href = '/home.html';
@@ -44,10 +38,6 @@
             });
         });
     </script>    
-
-
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kataloka - Login</title>
@@ -94,7 +84,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+        <p>&copy; 2024 Kataloka dibuat oleh Melissa Trenggono. Semua hak dilindungi.</p>
     </footer>
 </body>
 

@@ -51,7 +51,6 @@ header p {
     transform: scale(1.05); 
 }
 
-/* Meaning container styling to match "Word of the Day" style */
 #meaning-container {
     max-width: 700px;
     margin: 40px auto;
@@ -67,7 +66,7 @@ header p {
 #word-title {
     font-size: 3rem;
     color: #333;
-    font-weight: bold;  /* Use a bold font weight similar to the example */
+    font-weight: bold;  
     margin: 0;
     line-height: 1.2;
 }
@@ -115,9 +114,6 @@ header p {
     line-height: 1.2;
 }
 
-
-
-/* Style for each card */
 .word-card {
     transition: transform 0.3s;
 }
@@ -126,8 +122,6 @@ header p {
     transform: scale(1.05);
 }
 
-
-/* Style for the back with word details */
 .card-back {
     font-size: 1rem;
     color: #333;
@@ -146,50 +140,111 @@ header p {
     justify-content: center;
 }
 
-/* Hide elements initially */
 .hidden {
     display: none;
 }
 
+@media (max-width: 1024px) {
+    .meaning-box {
+        width: 90%;
+        max-width: 500px;
+    }
 
+    #word-title {
+        font-size: 1.8rem; 
+    }
 
-/* Responsive adjustments */
+    .part-of-speech,
+    .pronunciation {
+        font-size: 1.1rem;
+    }
+
+    .meaning-title,
+    .did-you-know-title {
+        font-size: 1.1rem;
+    }
+
+    .word-definition,
+    .did-you-know {
+        font-size: 0.95rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .words-container {
-        grid-template-columns: repeat(2, 1fr); 
-        align-items: center;
-        justify-content: center;
-        display: grid;
-        background-color: #fffbed;
-        padding: 20px;
+    .meaning-box {
+        width: 90%;
+        max-width: 400px; 
     }
 
-    .interactive-box {
-        padding: 0 20px;
-        margin: 0 auto;
-        display: flex;
-        font-size: 2rem; 
+    #word-title {
+        font-size: 1.6rem;
     }
 
-    .word-box {
-        font-size: 16px;
+    .part-of-speech,
+    .pronunciation {
+        font-size: 1rem;
+    }
+
+    .meaning-title,
+    .did-you-know-title {
+        font-size: 1rem;
+    }
+
+    .word-definition,
+    .did-you-know {
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
-    .interactive-box {
-        font-size: 1.2rem; 
+    .meaning-box {
+        width: 90%; 
+        max-width: 350px; 
+        height: auto;
     }
-    
+
     #word-title {
-        font-size: 2.5em;
+        font-size: 1.4rem;
     }
 
-    .word-details {
-        font-size: 1em;
+    .part-of-speech,
+    .pronunciation {
+        font-size: 0.9rem;
     }
 
-    .word-definition {
-        font-size: 1em;
+    .meaning-title,
+    .did-you-know-title {
+        font-size: 0.9rem;
+    }
+
+    .word-definition,
+    .did-you-know {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .meaning-box {
+        width: 90%;
+        max-width: 320px; 
+    }
+
+    #word-title {
+        font-size: 1.2rem;
+    }
+
+    .part-of-speech,
+    .pronunciation {
+        font-size: 0.8rem;
+    }
+
+    .meaning-title,
+    .did-you-know-title {
+        font-size: 0.85rem;
+    }
+
+    .word-definition,
+    .did-you-know {
+        font-size: 0.8rem;
     }
 }

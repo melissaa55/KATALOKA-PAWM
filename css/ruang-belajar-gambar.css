@@ -10,13 +10,13 @@
 
 .feature-content {
     display: flex;
-    flex-direction: column; /* Centers the content vertically */
+    flex-direction: column; 
     align-items: center;
     justify-content: center;
 }
 
 .feature-image1 {
-    width: 80px; /* Sesuaikan ukuran gambar sesuai kebutuhan */
+    width: 80px; 
     height: auto;
     display: flex;
     

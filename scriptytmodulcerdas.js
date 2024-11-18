@@ -20,7 +20,6 @@ function displayLinks() {
             const videoBox = document.createElement('div');
             videoBox.classList.add('video-box');
 
-            // YouTube iframe
             const iframe = document.createElement('iframe');
             iframe.src = `https://www.youtube.com/embed/${videoId}`;
             iframe.width = "350";
@@ -28,17 +27,14 @@ function displayLinks() {
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             iframe.allowFullscreen = true;
 
-            // Mark as Watched button
             const watchedButton = document.createElement('button');
             watchedButton.textContent = "Telah Ditonton";
             watchedButton.classList.add('watched-button');
             watchedButton.onclick = () => toggleWatchedState(watchedButton);
 
-            // Append iframe and button to videoBox
             videoBox.appendChild(iframe);
             videoBox.appendChild(watchedButton);
 
-            // Append videoBox to container
             container.appendChild(videoBox);
         });
     } else {
@@ -48,11 +44,9 @@ function displayLinks() {
 
 function toggleWatchedState(button) {
     if (button.classList.contains('watched')) {
-        // Unmark as watched
         button.textContent = "Telah Ditonton";
         button.classList.remove('watched');
     } else {
-        // Mark as watched
         button.textContent = "Telah Ditonton";
         button.classList.add('watched');
     }

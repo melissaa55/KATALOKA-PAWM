@@ -1,4 +1,3 @@
-// Initialize Firebase only if it hasn't been initialized
 if (!firebase.apps.length) {
     firebase.initializeApp({
         apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
@@ -16,8 +15,7 @@ const db = firebase.firestore();
 
 document.querySelector('.register-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // Get form values
+
     const fullName = document.querySelector('#fullName').value;
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
@@ -29,11 +27,9 @@ document.querySelector('.register-form').addEventListener('submit', async (e) =>
     }
 
     try {
-        // Create user with email and password
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
 
-        // Save the full name in Firestore
         await db.collection("users").doc(user.uid).set({
             fullName: fullName,
             email: email,
@@ -41,7 +37,7 @@ document.querySelector('.register-form').addEventListener('submit', async (e) =>
         });
 
         alert('User registered successfully!');
-        window.location.href = 'login.html'; // Redirect to login page
+        window.location.href = 'login.html'; 
     } catch (error) {
         console.error(error);
         alert(error.message);

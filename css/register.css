@@ -22,7 +22,39 @@
 }
 
 .register-image {
-    width: 350px; /* Sesuaikan ukuran sesuai kebutuhan */
+    width: 350px;
     height: auto;
-    margin-right: 120px; /* Memberi jarak antara gambar dan form */
+    margin-right: 120px; 
+}
+
+@media (max-width: 768px) {
+    .register-page {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .register-image {
+        width: 200px; 
+        margin-right: 0; 
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-page {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .register-image {
+        width: 150px; 
+        margin-bottom: 15px; 
+    }
+}
+
+@media (max-width: 375px) {
+    .register-image {
+        width: 100px; 
+        margin-bottom: 10px; 
+    }
 }

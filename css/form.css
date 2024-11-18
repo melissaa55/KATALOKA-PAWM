@@ -64,3 +64,89 @@ form {
     text-decoration: underline;
 }
 
+@media (max-width: 1024px) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .register-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px; 
+        gap: 20px;
+        box-sizing: border-box; 
+    }
+
+    .register-image {
+        margin: 0;
+        max-width: 100%; 
+        height: auto;
+    }
+
+    .form-container {
+        max-width: 90%; 
+        margin: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .register-page {
+        flex-direction: column; 
+        padding: 0 10px;
+    }
+
+    .register-image {
+        max-width: 80%; 
+        margin-bottom: 20px;
+    }
+
+    .form-container {
+        max-width: 95%; 
+        padding: 20px; 
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        width: 90%; 
+        max-width: 400px; 
+        padding: 20px; 
+    }
+
+    .form-title {
+        font-size: 1.2rem;
+    }
+
+    .form-input {
+        font-size: 1rem; 
+    }
+
+    .form-button {
+        font-size: 1rem; 
+    }
+}
+
+@media (max-width: 375px) {
+    .form-container {
+        width: 95%; 
+        max-width: 360px; 
+        padding: 15px; 
+    }
+
+    .form-title {
+        font-size: 1rem; 
+    }
+
+    .form-input {
+        font-size: 0.9rem; 
+    }
+
+    .form-button {
+        font-size: 0.9rem; 
+    }
+}
+
+

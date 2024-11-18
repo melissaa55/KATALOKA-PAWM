@@ -28,11 +28,11 @@ header {
 
 .logo-container {
     padding: 30px 40px;
-    flex: 0 0 auto; /* Menjaga logo tetap di kiri */
+    flex: 0 0 auto; 
 }
 
 .header-logo {
-    width: 70px; /* Ukuran yang lebih kecil */
+    width: 70px; 
     height: auto;
     
 }
@@ -41,7 +41,7 @@ header {
     padding: 20px 40px;
     display: flex;
     gap: 20px;
-    flex: 0 0 auto; /* Menjaga tombol tetap di kanan */
+    flex: 0 0 auto; 
 }
 
 .btn-outline {
@@ -103,14 +103,6 @@ header {
     margin-bottom: 40px;
 }
 
-
-
-/* .arrow-image {
-    width: 300px; /* Sesuaikan ukuran panah */
-/*    height: auto;
-/*} */
-
-
 .btn-primary {
     font-family: "Poppins";
     background-color: #ffffeb;
@@ -126,8 +118,8 @@ header {
 }
 
 .shine-effect {
-    position: relative; /* Mengatur posisi untuk elemen ::after */
-    overflow: hidden; /* Membatasi efek agar hanya di dalam tombol */
+    position: relative; 
+    overflow: hidden; 
     padding: 15px 55px;
     border: none;
     border-radius: 10px;
@@ -146,31 +138,31 @@ header {
 
 
 .shine-effect::after {
-    content: ''; /* Membuat elemen pseudo untuk efek shine */
+    content: ''; 
     position: absolute;
     top: 0;
-    left: -100%; /* Mulai dari luar kiri tombol */
-    width: 200%; /* Lebar efek di dalam tombol */
-    height: 100%; /* Tinggi efek sesuai tombol */
+    left: -100%; 
+    width: 200%;
+    height: 100%; 
     background: linear-gradient(
         120deg,
         rgb(255, 255, 255) 0%,
         rgba(223, 236, 170, 0.229) 50%,
         rgba(255, 255, 255, 0.682) 500%
-    ); /* Efek gradasi cahaya */
-    transform: skewX(-25deg); /* Kemiringan cahaya */
-    animation: shine-inside 2s infinite; /* Animasi kilauan */
+    ); 
+    transform: skewX(-25deg); 
+    animation: shine-inside 2s infinite; 
 }
 
 @keyframes shine-inside {
     0% {
-        left: -100%; /* Kilauan dimulai dari luar kiri */
+        left: -100%; 
     }
     50% {
-        left: 0%; /* Kilauan melintasi tombol */
+        left: 0%; 
     }
     100% {
-        left: 100%; /* Kilauan bergerak ke luar kanan */
+        left: 100%;
     }
 }
 
@@ -179,8 +171,8 @@ header {
 }
 
 .btn-primary:active {
-    transform: translateY(3px); /* Efek tertekan */
-    box-shadow: 0 2px 0 #b8c995; /* Bayangan berkurang */
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 #b8c995;
 }
 
 .bear-image {
@@ -222,4 +214,180 @@ footer {
 footer p {
     font-family: "Poppins";
     margin: 0;
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 70px; 
+    }
+
+    .hero h1::before {
+        height: 50px; 
+    }
+
+    .hero p {
+        font-size: 20px; 
+    }
+
+    .bear-image {
+        width: 250px;
+        margin-left: 0; 
+    }
+
+    .logo-container {
+        padding: 20px;
+    }
+
+    .buttons {
+        gap: 10px; 
+    }
+
+    .btn-outline, .btn-primary {
+        padding: 10px 20px; 
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px; 
+        overflow: auto; 
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .logo-container, .buttons {
+        padding: 10px; 
+    }
+
+    .hero h1 {
+        font-size: 50px; 
+    }
+
+    .hero p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .bear-image {
+        width: 200px;
+    }
+
+    .btn-outline, .btn-primary {
+        padding: 8px 16px; 
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 40px; 
+    }
+
+    .hero p {
+        font-size: 16px; 
+    }
+
+    .btn-outline, .btn-primary {
+        padding: 6px 12px;
+        font-size: 12px; 
+    }
+
+    .bear-image {
+        width: 150px; 
+    }
+}
+
+@media (max-width: 320px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 30px; 
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .bear-image {
+        width: 120px;
+    }
+
+    .btn-outline, .btn-primary {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    body {
+        padding: 10px; 
+        overflow: auto; 
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center; 
+        padding: 10px;
+    }
+
+    .logo-container {
+        padding: 5px; 
+    }
+
+    .header-logo {
+        width: 50px; 
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    .btn-outline, .btn-primary {
+        padding: 6px 12px;
+        font-size: 12px; 
+    }
+
+    .hero {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center; 
+        gap: 20px;
+    }
+
+    .hero h1 {
+        font-size: 36px; 
+    }
+
+    .hero h1::before {
+        height: 30px; 
+    }
+
+    .hero p {
+        font-size: 14px; 
+        margin-bottom: 20px; 
+    }
+
+    .bear-image {
+        width: 120px; 
+        margin: 0; 
+    }
+
+    footer {
+        font-size: 12px; 
+        padding: 10px;
+    }
 }

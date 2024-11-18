@@ -2,14 +2,11 @@
 <html lang="id">
 
 <head>
-    <!-- Firebase CDN Scripts -->
     <script type="module">
-        // Import Firebase functions
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
         import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyCSttI7K_H21RgkU-ZJ0hf0d_mgoipqKwg",
             authDomain: "kataloka-995bd.firebaseapp.com",
@@ -20,17 +17,14 @@
             measurementId: "G-0X8CY7D8EM"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Tambahkan event listener setelah halaman dimuat
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.register-form').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
-                // Ambil nilai form
+
                 const fullName = document.querySelector('#fullName').value;
                 const email = document.querySelector('#email').value;
                 const password = document.querySelector('#password').value;
@@ -42,11 +36,9 @@
                 }
 
                 try {
-                    // Buat pengguna dengan email dan kata sandi
                     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                     const user = userCredential.user;
 
-                    // Simpan nama lengkap di Firestore
                     await setDoc(doc(db, "users", user.uid), {
                         fullName: fullName,
                         email: email,
@@ -54,7 +46,7 @@
                     });
 
                     alert('Pendaftaran berhasil!');
-                    window.location.href = 'login.html'; // Arahkan ke halaman login
+                    window.location.href = 'login.html'; 
                 } catch (error) {
                     console.error(error);
                     alert(error.message);
@@ -62,8 +54,7 @@
             });
         });
     </script>    
-    
-    <!-- Meta dan CSS -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kataloka - Register</title>
@@ -117,7 +108,7 @@
     
 
     <footer>
-        <p>&copy; 2024 Kataloka. Semua hak dilindungi.</p>
+        <p>&copy; 2024 Kataloka dibuat oleh Melissa Trenggono. Semua hak dilindungi.</p>
     </footer>
 </body>
 
