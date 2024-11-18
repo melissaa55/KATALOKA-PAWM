@@ -430,12 +430,13 @@ h3 {
 @media (max-width: 768px) {
     .popup-content {
         width: 350px; 
-        max-width: 85%; 
+        max-width: 500px; 
         padding: 20px;
     }
     .popup-icon {
-        width: 100px; 
+        width: 150px; 
         top: -60px; 
+        height: 100px;
     }
 
     .popup-content h2 {
@@ -444,6 +445,12 @@ h3 {
 
     .popup-content p {
         font-size: 14px; 
+    }
+
+    .popup-icon2 {
+        width: 120px; 
+        top: -60px; 
+        height: 110px;
     }
 }
 @media (max-width: 480px) {
@@ -466,8 +473,9 @@ h3 {
         padding: 15px; 
     }
     .popup-icon {
-        width: 80px; 
-        top: -35px; 
+        width: 120px; 
+        top: -50px; 
+        height: 80px;
     }
 
     .popup-content h2 {
@@ -501,10 +509,10 @@ h3 {
     }
 
     .popup-icon {
-        width: 70px; 
-        top: -30px; 
+        width: 100px; 
+        top: -40px; 
+        height: 70px;
     }
-
     .popup-content h2 {
         font-size: 1.4rem; 
     }
